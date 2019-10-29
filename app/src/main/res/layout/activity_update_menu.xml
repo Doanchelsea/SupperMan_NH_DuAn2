@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.adddish.AddDishActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <ImageView
+            android:id="@+id/activity_register_iv_back_update"
+            android:layout_width="@dimen/space_24"
+            android:layout_height="@dimen/space_24"
+            android:layout_gravity="start|center_horizontal"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Sửa món ăn"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_20" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/space_10"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/re_update"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarUpdate"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_150">
+        <ImageView
+            android:id="@+id/img_update"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="170dp" />
+        <ImageView
+            android:id="@+id/img_add_update"
+            android:layout_margin="10dp"
+            android:layout_alignBottom="@+id/img_update"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_add_a_photo_black"
+            android:layout_width="@dimen/space_30"
+            android:layout_height="@dimen/space_30" />
+    </RelativeLayout>
+
+    <RadioGroup
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/radioGroup_update"
+        app:layout_constraintTop_toBottomOf="@+id/re_update"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/padding_10"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioBuaTrua_update"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Bữa Trưa" />
+        <RadioButton
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/radioBuatoi_update"
+            android:text="Bữa tối"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/radioCaNgay_update"
+            android:text="Cả ngày"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+    <RadioGroup
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/radioGroup1_update"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_update"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/padding_10"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/radio_lau_update"
+            android:text="Lẩu nướng"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/radio_do_an_update"
+            android:text="Đồ ăn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/radio_nuoc_update"
+            android:text="Nước uống"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/edName_update"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        android:layout_marginTop="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_8"
+        android:background="@drawable/bg_edit_text"
+        android:padding="@dimen/space_10"
+        android:hint="Tên món ăn"
+        android:inputType="text"
+        android:maxLength="30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup1_update" />
+
+    <EditText
+        android:id="@+id/edPrice_update"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        android:layout_marginTop="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_8"
+        android:background="@drawable/bg_edit_text"
+        android:padding="@dimen/space_10"
+        android:hint="Giá tiền"
+        android:inputType="number"
+        android:maxLength="30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edName_update" />
+    <EditText
+        android:lines="3"
+        android:maxLines="3"
+        android:id="@+id/edDescription_update"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_10"
+        android:autofillHints="false"
+        android:background="@drawable/bg_edit_text"
+        android:gravity="top"
+        android:hint="Mô tả món ăn"
+        android:imeOptions="actionDone"
+        android:inputType="textMultiLine"
+        android:maxLength="200"
+        android:padding="@dimen/space_10"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edPrice_update" />
+    <Button
+        android:id="@+id/btn_update_dish"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_44"
+        android:layout_marginStart="@dimen/space_8"
+        android:layout_marginEnd="@dimen/space_8"
+        android:layout_marginTop="@dimen/space_16"
+        android:background="@drawable/bg_button"
+        android:textAllCaps="false"
+        android:text="Xác nhận"
+        app:layout_constraintTop_toBottomOf="@id/edDescription_update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

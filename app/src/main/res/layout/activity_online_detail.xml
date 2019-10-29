@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.onlinedetail.OnlineDetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_online"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <ImageView
+            android:id="@+id/activity_register_iv_back_online"
+            android:layout_width="@dimen/space_24"
+            android:layout_height="@dimen/space_24"
+            android:layout_gravity="start|center_horizontal"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Thông tin người đặt"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:visibility="visible"
+        android:id="@+id/shimmer_view_container_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <include layout="@layout/item_load_user" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_user"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_marginTop="@dimen/space_10"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_user"
+                android:src="@color/black"
+                android:layout_width="@dimen/space_150"
+                android:layout_height="@dimen/space_150" />
+        </RelativeLayout>
+
+        <TextView
+            android:text="Nguyễn Văn AAA"
+            android:id="@+id/tv_name_user"
+            android:layout_marginTop="@dimen/space_10"
+            android:drawablePadding="@dimen/space_10"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            android:layout_marginLeft="@dimen/space_6"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Nguyễn Văn AAA"
+            android:id="@+id/tv_sdt_user"
+            android:drawableLeft="@drawable/ic_phone_black_24dp"
+            android:layout_marginLeft="@dimen/space_6"
+            android:layout_marginTop="@dimen/space_6"
+            android:drawablePadding="@dimen/space_10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_marginTop="@dimen/space_20"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sdt_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+            android:background="@drawable/button_orange"
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/btn_huy_dat"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:text="Hủy đặt"
+            android:layout_width="@dimen/space_150"
+            android:layout_height="@dimen/space_40" />
+        <Button
+            android:background="@drawable/button_add"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_toRightOf="@+id/btn_huy_dat"
+            android:id="@+id/btn_xac_nhan_user"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:text="Xác nhận"
+            android:layout_width="@dimen/space_150"
+            android:layout_height="@dimen/space_40" />
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

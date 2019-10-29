@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SupperMan_NH_DuAn2</string>
+    <string name="error_missing_network">Mất kết nối mạng</string>
+    <string name="error">Kết nối thất bại, Vui lòng thử lại</string>
+    <string name="main_menu_text_notifications">Thông báo</string>
+    <string name="home_dialog_button_text_cancel">Hủy bỏ</string>
+    <string name="register_button_text_confirm">Xác nhận</string>
+    <string name="error_null">Không được để trống</string>
+    <string name="error_nho_hon_0">Số bàn phải lớn hơn 0</string>
+    <string name="error_text_number">Đây không phải là số</string>
+    <string name="error_user">Tài khoản không tồn tại</string>
+    <string name="error_phone_number">Đây không phải là số điện thoại</string>
+    <string name="error_null_image">Bạn chưa chọn ảnh</string>
+    <string name="text_offline">Đang đặt</string>
+    <string name="text_online">Đặt online</string>
+    <string name="driver_wating">Bạn có muốn thêm bàn ăn không</string>
+    <string name="error_edit_so_ban_an">Nhà hàng không có bàn ăn</string>
+    <string name="manage_messing">Trạng thái món ăn của khách hàng </string>
+
+</resources>

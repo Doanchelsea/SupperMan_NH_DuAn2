@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/txtMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/space_16"
+        android:text="@string/manage_messing"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_16"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_1"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtMessage" />
+
+    <Button
+        android:textAllCaps="false"
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/btn_cance"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_40"
+        android:text="Hủy bỏ"
+        android:textColor="@color/hotline_color_button_text"
+        android:textSize="@dimen/text_size_14"
+        app:layout_constraintEnd_toStartOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="@dimen/space_1"
+        android:layout_height="@dimen/space_40"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toStartOf="@+id/btn_huy_mon"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_cance"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+    <Button
+        android:textAllCaps="false"
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/btn_huy_mon"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_40"
+        android:text="Hủy món"
+        android:textColor="@color/hotline_color_button_text"
+        android:textSize="@dimen/text_size_14"
+        app:layout_constraintEnd_toStartOf="@+id/view3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+    <View
+        android:textAllCaps="false"
+        android:id="@+id/view3"
+        android:layout_width="@dimen/space_1"
+        android:layout_height="@dimen/space_40"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toStartOf="@+id/btn_huy_mon"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_xac_nhan"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+    <Button
+        android:textAllCaps="false"
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/btn_xac_nhan"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_40"
+        android:text="Hoàn thành"
+        android:textColor="@color/hotline_color_button_text"
+        android:textSize="@dimen/text_size_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/relativeLayout_loading"
+        android:layout_marginTop="@dimen/space_10"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_user_loading"
+            android:src="@color/placeholder_bg"
+            android:layout_width="@dimen/space_100"
+            android:layout_height="@dimen/space_100" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_name_user_loading"
+        android:layout_marginTop="@dimen/space_10"
+        android:drawablePadding="@dimen/space_10"
+        android:background="@color/placeholder_bg"
+        android:textColor="@color/black"
+        android:textSize="@dimen/space_20"
+        android:layout_marginLeft="@dimen/space_70"
+        android:layout_marginRight="@dimen/space_70"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_10" />
+    <TextView
+        android:id="@+id/tv_sdt_user_loading"
+        android:background="@color/placeholder_bg"
+        android:layout_marginLeft="@dimen/space_70"
+        android:layout_marginRight="@dimen/space_70"
+        android:layout_marginTop="@dimen/space_6"
+        android:textColor="@color/black"
+        android:textSize="@dimen/space_20"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_user_loading"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_10" />
+</androidx.constraintlayout.widget.ConstraintLayout>

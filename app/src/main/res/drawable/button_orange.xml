@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:state_pressed="true" >
+        <shape android:shape="rectangle"  >
+            <corners android:radius="30dip" />
+            <gradient android:angle="-90" android:startColor="@color/colorButtonOrangeClick" android:endColor="@color/colorButtonOrangeClick"  />
+        </shape>
+    </item>
+    <item >
+        <shape android:shape="rectangle"  >
+            <stroke android:width="2px" android:color="#FF0000"/>
+            <corners android:radius="30dip" />
+            <gradient android:angle="-90"  android:startColor="@color/colorButtonOrange" android:endColor="@color/colorButtonOrange" />
+        </shape>
+    </item>
+</selector>
