@@ -40,6 +40,7 @@ public class HomePresenter {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.duongdanmanage,
                 response -> {
+
                     int id;
                     String date;
                     int idname;
@@ -55,7 +56,7 @@ public class HomePresenter {
                     String songuoi;
                     int iduser;
 
-                    if (response != null) {
+                    if (response != null && response.length() != 2) {
                         list.clear();
                         try {
                             JSONArray jsonArray = new JSONArray(response);
@@ -82,8 +83,9 @@ public class HomePresenter {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    }else {
+                        homeContract.ShowError();
                     }
-                    homeContract.ShowError();
 
         },error ->{
             homeContract.ShowErorr(R.string.error);
@@ -103,7 +105,7 @@ public class HomePresenter {
         StringRequest stringRequest = new StringRequest(Request.Method.POST,Server.duongdandeletemanage,response -> {
             homeContract.ShowDelete();
         },error -> {
-
+            homeContract.ShowErorr(R.string.error);
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -119,7 +121,7 @@ public class HomePresenter {
         StringRequest stringRequest = new StringRequest(Request.Method.POST,Server.duongdanaddthanhtoan,response -> {
             homeContract.addThanhtoan(manage.getId());
         },error -> {
-
+            homeContract.ShowErorr(R.string.error);
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -131,6 +133,8 @@ public class HomePresenter {
                 hashMap.put("discounts","0");
                 hashMap.put("soluong",manage.getSoluong());
                 hashMap.put("iduser",""+manage.getIduser());
+                hashMap.put("idtrangthai","0");
+                hashMap.put("idnhahang",MainActivity.ID);
                 return hashMap;
             }
         };

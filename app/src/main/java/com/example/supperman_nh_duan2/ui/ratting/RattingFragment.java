@@ -1,10 +1,9 @@
 package com.example.supperman_nh_duan2.ui.ratting;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +13,9 @@ import com.example.supperman_nh_duan2.adapter.BananAdapter;
 import com.example.supperman_nh_duan2.api.eventbus.NewEvent;
 import com.example.supperman_nh_duan2.base.BaseFragment;
 import com.example.supperman_nh_duan2.lisenner.BanLisenner;
+import com.example.supperman_nh_duan2.lisenner.LisennerDelete;
+import com.example.supperman_nh_duan2.lisenner.Listener;
 import com.example.supperman_nh_duan2.model.Banan;
-import com.example.supperman_nh_duan2.ui.menu.detail.DigLogDetail;
 import com.example.supperman_nh_duan2.ui.thanhtoan.ThanhToanActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jakewharton.rxbinding3.view.RxView;
@@ -24,11 +24,12 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import es.dmoral.toasty.Toasty;
 
-public class RattingFragment extends BaseFragment implements RattingContract, Listener,LisennerDelete, BanLisenner {
+public class RattingFragment extends BaseFragment implements RattingContract, Listener, LisennerDelete, BanLisenner {
     @BindView(R.id.re_Ban_an)
     RecyclerView reBanan;
     @BindView(R.id.imgAdd_ban_an)
@@ -39,6 +40,7 @@ public class RattingFragment extends BaseFragment implements RattingContract, Li
     LinearLayoutManager manager = new GridLayoutManager(activity,2);
     BananAdapter bananAdapter;
     RattingPresenter presenter;
+
     public static RattingFragment newInstance() {
         Bundle args = new Bundle();
         RattingFragment fragment = new RattingFragment();
@@ -48,12 +50,18 @@ public class RattingFragment extends BaseFragment implements RattingContract, Li
     @Override
     protected void addEvents() {
         presenter.getData(list);
-        addDisposable(RxView.clicks(imgAddbanan).subscribe(unit -> {
+        addDisposable(RxView.clicks(imgAddbanan)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             DiglogAdd dialog = DiglogAdd.newInstance();
             dialog.show(getChildFragmentManager(), dialog.getTag());
         }));
 
-        addDisposable(RxView.clicks(floatingActionButton).subscribe(unit -> {
+        addDisposable(RxView.clicks(floatingActionButton)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             presenter.soban();
         }));
     }
@@ -81,6 +89,7 @@ public class RattingFragment extends BaseFragment implements RattingContract, Li
 
     @Override
     public void show(List<Banan> banans) {
+        reBanan.setVisibility(View.VISIBLE);
         bananAdapter = new BananAdapter(banans,activity,this);
         reBanan.setLayoutManager(manager);
         reBanan.setAdapter(bananAdapter);
@@ -88,7 +97,7 @@ public class RattingFragment extends BaseFragment implements RattingContract, Li
 
     @Override
     public void ShowError() {
-
+        reBanan.setVisibility(View.GONE);
     }
 
     @Override

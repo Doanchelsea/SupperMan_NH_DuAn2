@@ -9,4 +9,5 @@ public interface MenuContract {
     void showList1(List<Menu> menus);
     void showList2(List<Menu> menus);
     void showError(int erro);
+    void showEror(int idmon);
 }

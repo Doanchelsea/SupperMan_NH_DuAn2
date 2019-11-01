@@ -23,6 +23,7 @@
         android:lines="1"
         android:inputType="number"
         android:hint="Nhập bàn ăn"
+        android:maxLength="4"
         android:background="@drawable/edit_ban_an"
         android:id="@+id/ed_ban_an"
         android:layout_width="match_parent"

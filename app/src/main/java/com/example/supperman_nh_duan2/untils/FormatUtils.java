@@ -54,7 +54,7 @@ public class    FormatUtils {
         return format.format(estimatedDistance);
     }
 
-    public static CharSequence convertDate(long date) {
+    public static CharSequence convertDate(Date date) {
         return DateFormat.format(PATTERN_DATE, date);
     }
 

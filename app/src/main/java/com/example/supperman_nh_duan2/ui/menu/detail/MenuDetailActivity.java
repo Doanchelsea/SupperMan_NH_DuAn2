@@ -2,8 +2,7 @@ package com.example.supperman_nh_duan2.ui.menu.detail;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
@@ -12,24 +11,29 @@ import android.widget.TextView;
 import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.api.Server;
 import com.example.supperman_nh_duan2.base.BaseActivity;
+import com.example.supperman_nh_duan2.lisenner.DeleteMenuLisenner;
+import com.example.supperman_nh_duan2.lisenner.ListennerDetail;
 import com.example.supperman_nh_duan2.model.Menu;
-import com.example.supperman_nh_duan2.ui.ratting.DiglogAdd;
 import com.example.supperman_nh_duan2.ui.updatemenu.UpdateMenuActivity;
 import com.example.supperman_nh_duan2.untils.FormatUtils;
-import com.example.supperman_nh_duan2.untils.ImageConverter;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
+import com.tapadoo.alerter.Alerter;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import es.dmoral.toasty.Toasty;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
-public class MenuDetailActivity extends BaseActivity implements Connectable, Disconnectable, Bindable,DetailContract,ListennerDetail,DeleteMenuLisenner {
+public class MenuDetailActivity extends BaseActivity implements Connectable, Disconnectable, Bindable,DetailContract, ListennerDetail, DeleteMenuLisenner {
     @BindView(R.id.tv_date)
     TextView tv_date;
     @BindView(R.id.img_mon_an)
@@ -53,6 +57,8 @@ public class MenuDetailActivity extends BaseActivity implements Connectable, Dis
     Menu menu;
     String spinerSL;
     Calendar calendar = Calendar.getInstance();
+
+    boolean isOnClick = true;
 
     private DetailPresenter detailPresenter;
     private static final String EXTRA_MENU = "EXTRA_MENU";
@@ -117,12 +123,19 @@ public class MenuDetailActivity extends BaseActivity implements Connectable, Dis
         }
 
 
-        addDisposable(RxView.clicks(imgback_dat_mon).subscribe(unit -> {
+        addDisposable(RxView.clicks(imgback_dat_mon)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             onBackPressed();
             finish();
         }));
 
-        addDisposable(RxView.clicks(tv_dat_mon).subscribe(unit -> {
+        addDisposable(RxView.clicks(tv_dat_mon)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
+           if (isOnClick == true){
 
             String time = FormatUtils.convertEstimatedDate3(calendar.getTime());
             if (menu.getDates().equals("day")){
@@ -138,11 +151,14 @@ public class MenuDetailActivity extends BaseActivity implements Connectable, Dis
                 if (19 <= Integer.valueOf(time) && Integer.valueOf(time) < 23){
                     detailPresenter.soban();
                 }else {
-                    Toasty.warning(this,"Món ăn hết giờ làm").show();
+                    Toasty.warning(this,"Món ăn chưa đến giờ làm").show();
                 }
-            }
+            } }
         }));
-        addDisposable(RxView.clicks(activity_popup_menu).subscribe(unit -> {
+        addDisposable(RxView.clicks(activity_popup_menu)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             ShowMenu();
         }));
     }
@@ -187,8 +203,19 @@ public class MenuDetailActivity extends BaseActivity implements Connectable, Dis
 
     @Override
     public void ShowSuccess() {
-        Toasty.success(this,"Đặt món thành công").show();
-        finish();
+        Alerter.create(this)
+                .setTitle(R.string.app_name)
+                .setText("Đặt món "+ menu.getNames()+" thành công ")
+                .setBackgroundColorRes(R.color.bg_color_alert_dialog)
+                .setDuration(1500)
+                .show();
+        isOnClick = false;
+        addDisposable(Observable.just(0).delay(1600, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aVoid -> {
+                    finish();
+                }));
     }
 
     @Override

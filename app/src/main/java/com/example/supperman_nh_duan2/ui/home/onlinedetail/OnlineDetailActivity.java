@@ -22,6 +22,7 @@ import com.example.supperman_nh_duan2.model.manage.Manage;
 import com.example.supperman_nh_duan2.ui.home.diglog.ConfirmDialog;
 import com.example.supperman_nh_duan2.ui.home.diglog.HotlineDialog;
 import com.example.supperman_nh_duan2.ui.home.diglog.OnlineDiglog;
+import com.example.supperman_nh_duan2.ui.main.MainActivity;
 import com.example.supperman_nh_duan2.ui.menu.detail.MenuDetailActivity;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.jakewharton.rxbinding3.view.RxView;
@@ -30,10 +31,16 @@ import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
+import com.tapadoo.alerter.Alerter;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class OnlineDetailActivity extends BaseActivity implements Connectable, Disconnectable, Bindable,OnlineDetailContract, ConfimLisenner, AddOnlineLisenner {
 
@@ -55,12 +62,14 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
     Manage manage;
     @BindView(R.id.activity_register_iv_back_online)
     ImageView imageView;
+    boolean isOnClick = true;
 
     public static void startActivity(Activity context, Manage manage){
         context.startActivity(new Intent(context, OnlineDetailActivity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .putExtra("MANAGE", manage));
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -102,18 +111,33 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
 
     @Override
     protected void addEvents() {
-         manage = getIntent().getParcelableExtra("MANAGE");
+        addDisposable(RxView.clicks(imageView)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
+                    onBackPressed();
+                    finish();
+                }));
+
+
+        manage = getIntent().getParcelableExtra("MANAGE");
         detailPresenter.getUser(manage.getIduser());
-        addDisposable(RxView.clicks(btn_huy_dat).subscribe(unit -> {
-            ConfirmDialog dialog = ConfirmDialog.newInstance(manage.getId());
-            dialog.show(getSupportFragmentManager(), dialog.getTag());
+        addDisposable(RxView.clicks(btn_huy_dat)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
+                    if (isOnClick == true){
+                        ConfirmDialog dialog = ConfirmDialog.newInstance(manage.getId());
+                        dialog.show(getSupportFragmentManager(), dialog.getTag());
+                    }
         }));
-        addDisposable(RxView.clicks(btn_xac_nhan_user).subscribe(unit -> {
-            detailPresenter.soban();
-        }));
-        addDisposable(RxView.clicks(imageView).subscribe(unit -> {
-            onBackPressed();
-            finish();
+        addDisposable(RxView.clicks(btn_xac_nhan_user)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
+                    if (isOnClick == true){
+                        detailPresenter.soban();
+                    }
         }));
     }
 
@@ -142,9 +166,14 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
         mshimmerFrameLayout.stopShimmer();
         mshimmerFrameLayout.setVisibility(View.GONE);
         visible(constraintLayout);
-        addDisposable(RxView.clicks(tv_sdt_user).subscribe(unit -> {
-            HotlineDialog dialog = HotlineDialog.newInstance(phone);
-            dialog.show(getSupportFragmentManager(), dialog.getTag());
+        addDisposable(RxView.clicks(tv_sdt_user)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
+                    if (isOnClick == true){
+                        HotlineDialog dialog = HotlineDialog.newInstance(phone);
+                        dialog.show(getSupportFragmentManager(), dialog.getTag());
+                    }
         }));
     }
 
@@ -162,7 +191,24 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
     @Override
     public void showthanhtoan(int id) {
         detailPresenter.delete(id);
-        Toasty.success(this,"Món ăn đã hoàn thành").show();
+        Alerter.create(this)
+                .setTitle(MainActivity.NAME)
+                .setText("Xác nhận khách hàng thành công")
+                .setDuration(1500)
+                .setBackgroundColorRes(R.color.bg_color_alert_dialog)
+                .show();
+        isOnClick = false;
+        addDisposable(Observable.just(0).delay(1600, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aVoid -> {
+                    finish();
+                }));
+    }
+
+    @Override
+    public void ShowError(int error) {
+        Toasty.error(context,error).show();
     }
 
 

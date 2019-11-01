@@ -144,7 +144,7 @@ public class DetailPresenter {
         StringRequest stringRequest = new StringRequest(Request.Method.POST,Server.duongdandeletemenu,response -> {
             detailContract.showXoaSuccess();
         },error -> {
-
+            detailContract.showBanerror(R.string.error);
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {

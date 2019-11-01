@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.api.Server;
 import com.example.supperman_nh_duan2.ui.main.MainActivity;
 
@@ -31,7 +32,7 @@ public class AddDishPresenter {
                 response -> {
                         addDishContract.showSuccer();
                 },error -> {
-                     addDishContract.ShowError();
+                     addDishContract.ShowError(R.string.error);
 
         }){
             @Override

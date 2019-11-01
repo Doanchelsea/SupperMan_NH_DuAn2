@@ -13,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.updatemenu.UpdateMenuActivity"></activity>
+        <activity android:name=".ui.menu.xemthem.XemThemActivity"></activity>
+        <activity android:name=".ui.history.detail.HistoryDetailActivity" />
+        <activity android:name=".ui.thongtin.detail.ThongTinDetailActivity" />
+        <activity android:name=".ui.history.HistoryActivity" />
+        <activity android:name=".ui.updatemenu.UpdateMenuActivity" />
         <activity android:name=".ui.thanhtoan.ThanhToanActivity" />
         <activity android:name=".ui.home.onlinedetail.OnlineDetailActivity" />
         <activity android:name=".ui.menu.detail.MenuDetailActivity" />

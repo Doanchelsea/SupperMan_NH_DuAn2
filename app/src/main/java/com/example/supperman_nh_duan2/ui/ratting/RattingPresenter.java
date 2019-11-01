@@ -38,7 +38,7 @@ public class RattingPresenter {
                     int id;
                     int soban;
                     int idnhahang;
-                    if (response != null) {
+                    if (response != null && response.length() != 2) {
                         banans.clear();
                         try {
                             JSONArray jsonArray = new JSONArray(response);
@@ -54,8 +54,9 @@ public class RattingPresenter {
                             e.printStackTrace();
                         }
 
+                    }else {
+                        rattingContract.ShowError();
                     }
-                    rattingContract.ShowError();
                 },error -> {
             rattingContract.ShowErorr(R.string.error);
         }){

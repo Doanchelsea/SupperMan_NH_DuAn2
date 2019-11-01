@@ -44,8 +44,7 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         viewHodel.tvName.setEllipsize(TextUtils.TruncateAt.END);
         viewHodel.tvName.setText(thanhToan.getNamemonan());
 
-        viewHodel.tvPrice.setText(FormatUtils.convertEstimatedPrice(thanhToan.getPrice())+" đ - Giảm giá "+
-                thanhToan.getDiscounts()+ "%");
+        viewHodel.tvPrice.setText(FormatUtils.convertEstimatedPrice(thanhToan.getPrice())+"VNĐ");
         viewHodel.tvPrice.setTextColor(0xFFFF0000);
 
         viewHodel.tvSoluong.setText("Số lượng : "+thanhToan.getSoluong());

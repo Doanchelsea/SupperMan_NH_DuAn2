@@ -40,13 +40,21 @@ public class OnlineFragment extends BaseFragment implements HomeContract, Online
     List<Manage> list = new ArrayList<>();
     ManageAdapter adapter;
     LinearLayoutManager manager = new LinearLayoutManager(activity);
+    boolean isLoad = false;
 
     @Override
     public void onResume() {
         super.onResume();
-        presenter.getData(list,"online");
+        if (isLoad == true){
+            presenter.getData(list,"online");
+        }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        isLoad = true;
+    }
 
     @Override
     public void onStart() {
@@ -106,6 +114,7 @@ public class OnlineFragment extends BaseFragment implements HomeContract, Online
 
     @Override
     public void ShowError() {
+        recyclerView.setVisibility(View.GONE);
         mshimmerFrameLayout.stopShimmer();
         mshimmerFrameLayout.setVisibility(View.GONE);
     }

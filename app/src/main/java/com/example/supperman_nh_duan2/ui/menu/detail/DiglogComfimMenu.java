@@ -8,8 +8,11 @@ import android.widget.TextView;
 
 import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.base.BaseDiglog;
+import com.example.supperman_nh_duan2.lisenner.DeleteMenuLisenner;
 import com.example.supperman_nh_duan2.model.Menu;
 import com.jakewharton.rxbinding3.view.RxView;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 
@@ -55,10 +58,16 @@ public class DiglogComfimMenu extends BaseDiglog {
     protected void addEvents() {
         menu = getArguments().getParcelable("MENU");
         tv_text_xoa_menu.setText("Bạn có muốn xóa món "+menu.getNames()+" không ?");
-        addDisposable(RxView.clicks(btn_cancel_xoa_menu).subscribe(unit -> {
+        addDisposable(RxView.clicks(btn_cancel_xoa_menu)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             hideDialog();
         }));
-        addDisposable(RxView.clicks(btn_xac_nhan_xoa_menu).subscribe(unit -> {
+        addDisposable(RxView.clicks(btn_xac_nhan_xoa_menu)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             listener.onClick(menu.getId());
             hideDialog();
         }));

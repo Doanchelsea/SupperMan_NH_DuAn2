@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.supperman_nh_duan2.R;
+import com.example.supperman_nh_duan2.untils.StringUtils;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
@@ -133,5 +135,11 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent,1);
+    }protected void loadFullName(String fullName, TextView tvFullName) {
+        if (StringUtils.isEmpty(fullName) || tvFullName == null) {
+            return;
+        }
+        tvFullName.setText(fullName);
     }
+
 }

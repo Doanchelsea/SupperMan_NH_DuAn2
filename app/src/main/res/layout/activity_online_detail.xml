@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_online"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/space_48"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -61,6 +61,8 @@
             android:layout_height="wrap_content">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_user"
+                app:civ_border_color="@color/update_info_color_border_avatar"
+                app:civ_border_width="@dimen/space_5"
                 android:src="@color/black"
                 android:layout_width="@dimen/space_150"
                 android:layout_height="@dimen/space_150" />

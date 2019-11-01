@@ -42,7 +42,7 @@ public class MenuPresenter {
             int prices;
             int idnhahang;
             String namenh;
-            if (response != null) {
+            if (response != null && response.length() != 2) {
                 list.clear();
                 try {
                     JSONArray jsonArray = new JSONArray(response);
@@ -63,6 +63,8 @@ public class MenuPresenter {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }else {
+               menuContract.showEror(Integer.valueOf(idmo));
             }
         } , error -> {
             menuContract.showError(R.string.error);
@@ -92,7 +94,7 @@ public class MenuPresenter {
             int prices;
             int idnhahang;
             String namenh;
-            if (response != null) {
+            if (response != null && response.length() != 2) {
                 list.clear();
                 try {
                     JSONArray jsonArray = new JSONArray(response);
@@ -113,6 +115,8 @@ public class MenuPresenter {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }else {
+                menuContract.showEror(Integer.valueOf(idmo));
             }
         } , error -> {
             menuContract.showError(R.string.error);
@@ -142,7 +146,7 @@ public class MenuPresenter {
             int prices;
             int idnhahang;
             String namenh;
-            if (response != null) {
+            if (response != null && response.length() != 2) {
                 list.clear();
                 try {
                     JSONArray jsonArray = new JSONArray(response);
@@ -163,6 +167,8 @@ public class MenuPresenter {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }else {
+                menuContract.showEror(Integer.valueOf(idmo));
             }
         } , error -> {
             menuContract.showError(R.string.error);

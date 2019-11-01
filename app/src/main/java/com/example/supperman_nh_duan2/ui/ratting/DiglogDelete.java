@@ -8,8 +8,10 @@ import android.widget.TextView;
 
 import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.base.BaseDiglog;
-import com.example.supperman_nh_duan2.ui.home.diglog.ConfirmDialog;
+import com.example.supperman_nh_duan2.lisenner.LisennerDelete;
 import com.jakewharton.rxbinding3.view.RxView;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 
@@ -52,7 +54,8 @@ public class DiglogDelete extends BaseDiglog {
 
     @Override
     protected void initDialog() {
-
+        Window window = getDialog().getWindow();
+        setTransparentDialog(window);
     }
 
     @Override
@@ -61,10 +64,14 @@ public class DiglogDelete extends BaseDiglog {
 
         tv_Messing.setText("Bạn có muốn xóa bàn "+ban+" không ?");
         addDisposable(RxView.clicks(btnCancel)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
                 .subscribe(aVoid -> hideDialog()));
 
         // clear all dialog
         addDisposable(RxView.clicks(btnClearAllNotification)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
                 .subscribe(aVoid -> {
                     lisenner.onClick(ban);
                     hideDialog();
@@ -78,7 +85,6 @@ public class DiglogDelete extends BaseDiglog {
 
     @Override
     protected void initDatas() {
-        Window window = getDialog().getWindow();
-        setTransparentDialog(window);
+
     }
 }

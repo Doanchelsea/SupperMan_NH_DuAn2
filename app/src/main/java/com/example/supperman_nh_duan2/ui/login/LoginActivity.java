@@ -3,7 +3,9 @@ package com.example.supperman_nh_duan2.ui.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +13,8 @@ import android.widget.EditText;
 import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.base.BaseActivity;
 import com.example.supperman_nh_duan2.model.LoadingDialog;
+import com.example.supperman_nh_duan2.model.local.AppPreferencesHelper;
+import com.example.supperman_nh_duan2.model.local.DataManager;
 import com.example.supperman_nh_duan2.ui.home.HomePresenter;
 import com.example.supperman_nh_duan2.ui.main.MainActivity;
 import com.example.supperman_nh_duan2.untils.PhoneUtils;
@@ -22,6 +26,8 @@ import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import es.dmoral.toasty.Toasty;
 
@@ -31,6 +37,10 @@ public class LoginActivity extends BaseActivity implements Connectable, Disconne
     @BindView(R.id.btnLogin)
     Button btnLogin;
     private LoginPresenter presenter;
+    private DataManager dataManager;
+    private AppPreferencesHelper appPreferencesHelper;
+    private SharedPreferences mPrefs;
+
 
     public static void startActivity(Activity context){
         context.startActivity(new Intent(context, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
@@ -60,7 +70,10 @@ public class LoginActivity extends BaseActivity implements Connectable, Disconne
 
     @Override
     protected void initData() {
-        presenter = new LoginPresenter(this,this);
+        mPrefs = context.getSharedPreferences("", Context.MODE_PRIVATE);
+        appPreferencesHelper = new AppPreferencesHelper(mPrefs,this);
+        dataManager = new DataManager(appPreferencesHelper);
+        presenter = new LoginPresenter(this,this,dataManager);
     }
 
     @Override
@@ -70,7 +83,10 @@ public class LoginActivity extends BaseActivity implements Connectable, Disconne
 
     @Override
     protected void addEvents() {
-        addDisposable(RxView.clicks(btnLogin).subscribe(
+        addDisposable(RxView.clicks(btnLogin)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(
                 unit ->{
                     String phone = edNumber.getText().toString().trim();
                     if (StringUtils.isEmpty(phone)){
@@ -114,9 +130,9 @@ public class LoginActivity extends BaseActivity implements Connectable, Disconne
     }
 
     @Override
-    public void ShowSuccer(int id,String name,String images) {
+    public void ShowSuccer() {
         showLoading(false);
-        MainActivity.startActivity(this,id,name,images);
+        MainActivity.startActivity(this);
     }
 
     @Override

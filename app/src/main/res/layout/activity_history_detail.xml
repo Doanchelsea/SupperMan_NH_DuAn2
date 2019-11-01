@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.onlinedetail.OnlineDetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_online"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <ImageView
+            android:id="@+id/activity_register_iv_back_history_detail"
+            android:layout_width="@dimen/space_24"
+            android:layout_height="@dimen/space_24"
+            android:layout_gravity="start|center_horizontal"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Chi tiết lịch sử"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_user"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_history"
+            android:layout_marginTop="@dimen/space_10"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_user_history"
+                app:civ_border_color="@color/update_info_color_border_avatar"
+                app:civ_border_width="@dimen/space_5"
+                android:layout_width="@dimen/space_120"
+                android:layout_height="@dimen/space_120" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_name_user_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout_history" />
+        <androidx.recyclerview.widget.RecyclerView
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/re_history_detail"
+            android:layout_marginTop="@dimen/space_6"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_user_history"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

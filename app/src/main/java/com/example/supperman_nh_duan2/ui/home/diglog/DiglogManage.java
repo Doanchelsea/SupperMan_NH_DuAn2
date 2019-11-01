@@ -11,6 +11,8 @@ import com.example.supperman_nh_duan2.lisenner.ManageLisenner;
 import com.example.supperman_nh_duan2.model.manage.Manage;
 import com.jakewharton.rxbinding3.view.RxView;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 
 public class DiglogManage extends BaseDiglog {
@@ -57,15 +59,24 @@ public class DiglogManage extends BaseDiglog {
 
     @Override
     protected void addEvents() {
-        addDisposable(RxView.clicks(btn_cancel).subscribe(unit -> {
+        addDisposable(RxView.clicks(btn_cancel)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             hideDialog();
         }));
-        addDisposable(RxView.clicks(btn_huy_mon).subscribe(unit -> {
+        addDisposable(RxView.clicks(btn_huy_mon)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             int id = getArguments().getInt("ID",0);
             hideDialog();
             listener.onClick(id);
         }));
-        addDisposable(RxView.clicks(btn_xac_nhan).subscribe(unit -> {
+        addDisposable(RxView.clicks(btn_xac_nhan)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             Manage manage = getArguments().getParcelable("MANAGE");
             hideDialog();
             listener.onAdd(manage);

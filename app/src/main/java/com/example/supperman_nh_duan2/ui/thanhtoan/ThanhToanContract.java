@@ -7,4 +7,6 @@ import java.util.List;
 public interface ThanhToanContract {
     void ShowList(List<ThanhToan> thanhToans);
     void ShowPrice(double tong,double dir,int iduser);
+    void ShowHistory();
+    void ShowError(int error);
 }

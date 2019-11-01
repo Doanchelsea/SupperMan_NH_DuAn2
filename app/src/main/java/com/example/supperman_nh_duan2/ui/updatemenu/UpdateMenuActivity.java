@@ -22,6 +22,7 @@ import com.example.supperman_nh_duan2.base.BaseActivity;
 import com.example.supperman_nh_duan2.model.LoadingDialog;
 import com.example.supperman_nh_duan2.model.Menu;
 import com.example.supperman_nh_duan2.untils.StringUtils;
+import com.example.supperman_nh_duan2.untils.ValidateUtils;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
@@ -32,6 +33,7 @@ import com.novoda.merlin.NetworkStatus;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import es.dmoral.toasty.Toasty;
@@ -129,21 +131,28 @@ public class UpdateMenuActivity extends BaseActivity implements Connectable, Dis
         edName_update.setText(menu.getNames());
         edPrice_update.setText(""+menu.getPrices());
 
-        addDisposable(RxView.clicks(btn_update_dish).subscribe(unit -> {
-
+        addDisposable(RxView.clicks(btn_update_dish)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             String name = edName_update.getText().toString().trim();
             String price = edPrice_update.getText().toString().trim();
             String description = edDescription_update.getText().toString().trim();
             String idmonan = null;
             String dates = null;
             String imageData = null;
-
-           if (StringUtils.isEmpty(name)){
+            if (StringUtils.isEmpty(name)){
                 Toasty.warning(this,R.string.error_null).show();
+            }else if (!ValidateUtils.isVaidFullName(name)){
+                Toasty.warning(this,R.string.error_validate).show();
             }else if (StringUtils.isEmpty(price)){
                 Toasty.warning(this,R.string.error_null).show();
+            }else if (!ValidateUtils.isVaidFullName(price)){
+                Toasty.warning(this,R.string.error_validate).show();
             }else if (StringUtils.isEmpty(description)){
                 Toasty.warning(this,R.string.error_null).show();
+            }else if (!ValidateUtils.isVaidFullName(description)){
+                Toasty.warning(this,R.string.error_validate).show();
             }else {
 
                 if (radioBuaTrua_update.isChecked()) {
@@ -161,21 +170,28 @@ public class UpdateMenuActivity extends BaseActivity implements Connectable, Dis
                 } else {
                     idmonan = "3";
                 }
-            }
+
                 showLoading(true);
-            if (bitmap != null){
-                 imageData = imageToString(bitmap);
-            }else {
-                imageData = "";
-            }
+                if (bitmap != null){
+                    imageData = imageToString(bitmap);
+                }else {
+                    imageData = "";
+                }
                 presenter.postMonAn(name,price,description,idmonan,imageData,dates,menu.getId());
 
+            }
         }));
-        addDisposable(RxView.clicks(img_back).subscribe(unit -> {
+        addDisposable(RxView.clicks(img_back)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             onBackPressed();
             finish();
         }));
-        addDisposable(RxView.clicks(img_add_update).subscribe(unit -> {
+        addDisposable(RxView.clicks(img_add_update)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             showImage();
         }));
     }
@@ -234,13 +250,12 @@ public class UpdateMenuActivity extends BaseActivity implements Connectable, Dis
     @Override
     public void ShowError(int error) {
         showLoading(false);
-        Toasty.warning(this,error).show();
+        Toasty.error(this,error).show();
     }
 
     @Override
     public void ShowSuccer() {
         showLoading(false);
-        Toasty.success(this,"Thành công").show();
         finish();
     }
 }

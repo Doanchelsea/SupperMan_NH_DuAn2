@@ -22,6 +22,7 @@ import butterknife.BindView;
  * hotline dialog
  */
 public class HotlineDialog extends BaseDiglog {
+
     private static final int DURATION_DELAY_CLICK_BUTTON = 2;
     private static final String EXTRA_PHONE_NUMBER = "EXTRA_PHONE_NUMBER";
 

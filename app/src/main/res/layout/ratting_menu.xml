@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarMenu"
         android:layout_width="0dp"
-        android:layout_height="53dp"
+        android:layout_height="@dimen/space_48"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

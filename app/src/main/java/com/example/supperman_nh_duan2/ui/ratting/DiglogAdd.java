@@ -4,19 +4,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import androidx.fragment.app.FragmentManager;
 
 import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.base.BaseDiglog;
-import com.example.supperman_nh_duan2.untils.SoUtils;
-import com.example.supperman_nh_duan2.untils.StringUtils;
+import com.example.supperman_nh_duan2.lisenner.Listener;
 import com.jakewharton.rxbinding3.view.RxView;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
-import es.dmoral.toasty.Toasty;
 
 public class DiglogAdd extends BaseDiglog {
 
@@ -53,10 +50,16 @@ public class DiglogAdd extends BaseDiglog {
 
     @Override
     protected void addEvents() {
-        addDisposable(RxView.clicks(btnCancel).subscribe(unit -> {
+        addDisposable(RxView.clicks(btnCancel)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             hideDialog();
         }));
-        addDisposable(RxView.clicks(btnAccept).subscribe(unit -> {
+        addDisposable(RxView.clicks(btnAccept)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             hideDialog();
             listener.add();
         }));

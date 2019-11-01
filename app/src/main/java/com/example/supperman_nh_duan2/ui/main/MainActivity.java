@@ -1,29 +1,29 @@
 package com.example.supperman_nh_duan2.ui.main;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
+import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.supperman_nh_duan2.R;
-import com.example.supperman_nh_duan2.api.eventbus.NewEvent;
 import com.example.supperman_nh_duan2.base.BaseActivity;
+import com.example.supperman_nh_duan2.model.local.AppPreferencesHelper;
+import com.example.supperman_nh_duan2.model.local.DataManager;
 import com.example.supperman_nh_duan2.ui.home.HomeFragment;
 import com.example.supperman_nh_duan2.ui.menu.MenuFragmnet;
+import com.example.supperman_nh_duan2.ui.ratting.DiglogAdd;
 import com.example.supperman_nh_duan2.ui.ratting.RattingFragment;
+import com.example.supperman_nh_duan2.ui.thongtin.ThongTinFragment;
+import com.example.supperman_nh_duan2.untils.StringUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import es.dmoral.toasty.Toasty;
@@ -33,12 +33,19 @@ public class MainActivity extends BaseActivity implements Connectable, Disconnec
     public static String ID;
     public static String NAME;
     public static String IMAGE;
+
+    private SharedPreferences mPrefs;
+    private AppPreferencesHelper appPreferencesHelper;
+    private DataManager dataManager;
+
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView bottomNavigationView;
     private Fragment activeFragment;
     private HomeFragment homeFragment = HomeFragment.newInstance();
-    private MenuFragmnet historyFragment = MenuFragmnet.newInstance();
+    private MenuFragmnet menuFragmnet = MenuFragmnet.newInstance();
     private RattingFragment accountFragment = RattingFragment.newInstance();
+//    private HistoryFragment historyFragment = HistoryFragment.newInstance();
+    private ThongTinFragment thongTinFragment = ThongTinFragment.newInstance();
 
     @Override
     protected void onResume() {
@@ -46,11 +53,13 @@ public class MainActivity extends BaseActivity implements Connectable, Disconnec
         registerConnectable(this);
         registerDisconnectable(this);
         registerBindable(this);
+        ID = dataManager.getID();
+        NAME = dataManager.getName();
+        IMAGE = dataManager.getImage();
     }
 
-    public static void startActivity(Activity context, int id, String name,String images){
-         context.startActivity(new Intent(context,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        .putExtra("ID",id).putExtra("NAME",name).putExtra("IMAGE",images));
+    public static void startActivity(Activity context){
+         context.startActivity(new Intent(context,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
          context.finish();
     }
     @Override
@@ -69,10 +78,14 @@ public class MainActivity extends BaseActivity implements Connectable, Disconnec
 
     @Override
     protected void initData() {
-        Intent intent = getIntent();
-        ID = String.valueOf(intent.getIntExtra("ID",0));
-        NAME = intent.getStringExtra("NAME");
-        IMAGE = intent.getStringExtra("IMAGE");
+        mPrefs = context.getSharedPreferences("", Context.MODE_PRIVATE);
+        appPreferencesHelper = new AppPreferencesHelper(mPrefs,this);
+        dataManager = new DataManager(appPreferencesHelper);
+
+        ID = dataManager.getID();
+        NAME = dataManager.getName();
+        IMAGE = dataManager.getImage();
+
     }
 
     @Override
@@ -113,12 +126,16 @@ public class MainActivity extends BaseActivity implements Connectable, Disconnec
                 activeFragment = homeFragment;
                 return true;
             case R.id.menu_navigation_menu:
-                loadFragment(activeFragment, historyFragment);
-                activeFragment = historyFragment;
+                loadFragment(activeFragment, menuFragmnet);
+                activeFragment = menuFragmnet;
                 return true;
             case R.id.menu_navigation_ratting:
                 loadFragment(activeFragment, accountFragment);
                 activeFragment = accountFragment;
+                return true;
+            case R.id.menu_navigation_thong_tin:
+                loadFragment(activeFragment, thongTinFragment);
+                activeFragment = thongTinFragment;
                 return true;
         }
         return false;
@@ -127,12 +144,13 @@ public class MainActivity extends BaseActivity implements Connectable, Disconnec
     private void loadFragment(Fragment activeFragment, Fragment showFragment) {
         getSupportFragmentManager().beginTransaction().hide(activeFragment).show(showFragment).commit();
     }
-
     private void loadAllFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.main_container, thongTinFragment, "4").hide(thongTinFragment).commit();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_container, accountFragment, "3").hide(accountFragment).commit();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.main_container, historyFragment, "2").hide(historyFragment).commit();
+                .add(R.id.main_container, menuFragmnet, "2").hide(menuFragmnet).commit();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_container, homeFragment, "1").commit();
     }

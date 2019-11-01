@@ -34,6 +34,7 @@ public class ConfirmDialog extends BaseDiglog {
         listener = null;
         super.onDestroyView();
     }
+
     public static ConfirmDialog newInstance(int id) {
         Bundle args = new Bundle();
         args.putInt("ID",id);
@@ -68,10 +69,14 @@ public class ConfirmDialog extends BaseDiglog {
     protected void addEvents() {
         // cancel
         addDisposable(RxView.clicks(btnCancel)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
                 .subscribe(aVoid -> hideDialog()));
 
         // clear all dialog
         addDisposable(RxView.clicks(btnClearAllNotification)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
                 .subscribe(aVoid -> {
                   int id =   getArguments().getInt("ID",0);
                     listener.onClick(id);

@@ -35,6 +35,7 @@ public class OnlineDetailPresenter {
     public void getUser(int Id){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.duongdanuserdetail, response -> {
+
             if (response == null){
                 return;
             }
@@ -55,7 +56,7 @@ public class OnlineDetailPresenter {
                 e.printStackTrace();
             }
         },error -> {
-
+            contract.ShowError(R.string.error);
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -66,12 +67,13 @@ public class OnlineDetailPresenter {
         };
         requestQueue.add(stringRequest);
     }
+
     public void delete(int id){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,Server.duongdandeletemanage,response -> {
             contract.showDelete();
         },error -> {
-
+            contract.ShowError(R.string.error);
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -87,7 +89,6 @@ public class OnlineDetailPresenter {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.duongdanbanan,
                 response -> {
-
                     if (response != null) {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
@@ -101,7 +102,7 @@ public class OnlineDetailPresenter {
                     }
 
                 },error -> {
-
+            contract.ShowError(R.string.error);
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -117,7 +118,7 @@ public class OnlineDetailPresenter {
         StringRequest stringRequest = new StringRequest(Request.Method.POST,Server.duongdanaddthanhtoan,response -> {
             contract.showthanhtoan(manage.getId());
         },error -> {
-
+            contract.ShowError(R.string.error);
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -128,6 +129,8 @@ public class OnlineDetailPresenter {
                 hashMap.put("banan",""+ban);
                 hashMap.put("discounts","15");
                 hashMap.put("iduser",""+manage.getIduser());
+                hashMap.put("idtrangthai","0");
+                hashMap.put("idnhahang",MainActivity.ID);
                 return hashMap;
             }
         };

@@ -25,7 +25,9 @@ import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.base.BaseActivity;
 
 import com.example.supperman_nh_duan2.model.LoadingDialog;
+import com.example.supperman_nh_duan2.ui.main.MainActivity;
 import com.example.supperman_nh_duan2.untils.StringUtils;
+import com.example.supperman_nh_duan2.untils.ValidateUtils;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
@@ -42,6 +44,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import es.dmoral.toasty.Toasty;
@@ -118,13 +121,19 @@ public class AddDishActivity extends BaseActivity implements Connectable, Discon
     @Override
     protected void addEvents() {
 
-        addDisposable(RxView.clicks(imgThemAnhMonAn).subscribe(
+        addDisposable(RxView.clicks(imgThemAnhMonAn)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(
                 unit -> {
                     showImage();
                 }
         ));
 
-        addDisposable(RxView.clicks(btn_add_dish).subscribe(
+        addDisposable(RxView.clicks(btn_add_dish)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(
                 btn -> {
                     String name = edNameAddDish.getText().toString().trim();
                     String price = edPriceAddDish.getText().toString().trim();
@@ -136,12 +145,17 @@ public class AddDishActivity extends BaseActivity implements Connectable, Discon
                         Toasty.warning(this,R.string.error_null_image).show();
                     }else if (StringUtils.isEmpty(name)){
                         Toasty.warning(this,R.string.error_null).show();
+                    }else if (!ValidateUtils.isVaidFullName(name)){
+                        Toasty.warning(this,R.string.error_validate).show();
                     }else if (StringUtils.isEmpty(price)){
                         Toasty.warning(this,R.string.error_null).show();
-                    }else if (StringUtils.isEmpty(description)){
+                    }else if (!ValidateUtils.isVaidFullName(name)){
+                        Toasty.warning(this,R.string.error_validate).show();
+                    } else if (StringUtils.isEmpty(description)){
                         Toasty.warning(this,R.string.error_null).show();
-                    }else {
-
+                    }else if (!ValidateUtils.isVaidFullName(name)){
+                        Toasty.warning(this,R.string.error_validate).show();
+                    } else {
                         if (radioBuaTrua.isChecked()){
                             dates = "lunch";
                         }else if (radioBuatoi.isChecked()){
@@ -163,7 +177,10 @@ public class AddDishActivity extends BaseActivity implements Connectable, Discon
                     }
                 }
         ));
-        addDisposable(RxView.clicks(activityRegisterIvBack).subscribe(
+        addDisposable(RxView.clicks(activityRegisterIvBack)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(
                 back -> {
                     onBackPressed();
                     finish();
@@ -223,8 +240,9 @@ public class AddDishActivity extends BaseActivity implements Connectable, Discon
         edPriceAddDish.setText("");
         imgAnhMonAn.setImageBitmap(bitmap1);
         Alerter.create(this)
-                .setTitle(R.string.app_name)
+                .setTitle(MainActivity.NAME)
                 .setText("Thêm món ăn thành công")
+                .setDuration(1000)
                 .setBackgroundColorRes(R.color.bg_color_alert_dialog)
                 .show();
     }
@@ -239,8 +257,8 @@ public class AddDishActivity extends BaseActivity implements Connectable, Discon
     }
 
     @Override
-    public void ShowError() {
+    public void ShowError(int error) {
         showProgress(false);
-        Toasty.error(this,"Thêm món ăn thất bại").show();
+        Toasty.error(this,error).show();
     }
 }

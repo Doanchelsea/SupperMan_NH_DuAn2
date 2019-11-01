@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">SupperMan_NH_DuAn2</string>
+    <string name="GOOGLE_API_KEY">AIzaSyA9rTnxqBiap6yioOqcGREcyrcZno2ShGU</string>
     <string name="error_missing_network">Mất kết nối mạng</string>
     <string name="error">Kết nối thất bại, Vui lòng thử lại</string>
     <string name="main_menu_text_notifications">Thông báo</string>
@@ -16,5 +17,7 @@
     <string name="driver_wating">Bạn có muốn thêm bàn ăn không</string>
     <string name="error_edit_so_ban_an">Nhà hàng không có bàn ăn</string>
     <string name="manage_messing">Trạng thái món ăn của khách hàng </string>
+    <string name="update_info_label_name_display">Tên hiển thị*:</string>
+    <string name="error_validate">Không được nhập ký tự đặc biệt</string>
 
 </resources>

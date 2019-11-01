@@ -1,8 +1,8 @@
 package com.example.supperman_nh_duan2.api;
 
 public class Server {
-//    public static String localhost = "192.168.1.7";
-    public static String localhost = "10.22.205.154";
+//    public static String localhost = "192.168.1.8";
+    public static String localhost = "192.168.1.33";
 //    public static String localhost = "172.20.10.12";
     public static String duongdanmanage = "http://"+localhost+"/supper/manage.php";
     public static String duongdananh = "http://"+localhost+"/supper/";
@@ -19,5 +19,10 @@ public class Server {
     public static String duongdanthanhtoan = "http://"+localhost+"/supper/thanhtoan.php";
     public static String duongdandeletemenu = "http://"+localhost+"/supper/deletemenu.php";
     public static String duongdanupdatemenu = "http://"+localhost+"/supper/updatemenu.php";
+    public static String duongdanaddhistory = "http://"+localhost+"/supper/addhistory.php";
+    public static String duongdanhistory = "http://"+localhost+"/supper/history.php";
+    public static String duongdanupdatenh = "http://"+localhost+"/supper/updatenh.php";
+    public static String duongdanrequestnh = "http://"+localhost+"/supper/requestnh.php";
+    public static String duongdanhistorydetail = "http://"+localhost+"/supper/historydetail.php";
 
 }

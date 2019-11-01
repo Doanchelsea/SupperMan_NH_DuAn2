@@ -8,4 +8,6 @@ public interface OnlineDetailContract {
     void showSoban(int ban);
 
     void showthanhtoan(int id);
+
+    void ShowError(int error);
 }

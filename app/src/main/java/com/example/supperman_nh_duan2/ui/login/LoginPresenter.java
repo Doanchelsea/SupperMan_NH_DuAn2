@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.api.Server;
+import com.example.supperman_nh_duan2.model.local.DataManager;
 import com.example.supperman_nh_duan2.model.manage.Manage;
 
 import org.json.JSONArray;
@@ -27,10 +28,12 @@ public class LoginPresenter {
 
     LoginContract loginContract;
     Context context;
+    private DataManager dataManager;
 
-    public LoginPresenter(LoginContract loginContract, Context context) {
+    public LoginPresenter(LoginContract loginContract, Context context,DataManager dataManager) {
         this.loginContract = loginContract;
         this.context = context;
+        this.dataManager = dataManager;
     }
 
     public void Login(final String phone){
@@ -41,17 +44,22 @@ public class LoginPresenter {
                     String phones;
                     String name;
                     String image;
+                    String lat;
+                    String lng;
                     if (response != null) {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 id = jsonObject.getInt("id");
                                 phones = jsonObject.getString("phones");
                                 image = jsonObject.getString("images");
                                 name = jsonObject.getString("names");
+                                lat = jsonObject.getString("lat");
+                                lng = jsonObject.getString("lng");
                                 if (phone.equals(phones)){
-                                    loginContract.ShowSuccer(id,name,image);
+                                    loginContract.ShowSuccer();
+                                    dataManager.updateUserInfoSharedPreference(String.valueOf(id),name,image,true);
                                     return;
                                 }
                             }

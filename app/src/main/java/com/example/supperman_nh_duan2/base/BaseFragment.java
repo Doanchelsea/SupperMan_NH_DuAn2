@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.supperman_nh_duan2.R;
+import com.example.supperman_nh_duan2.untils.StringUtils;
 import com.trello.rxlifecycle3.components.support.RxFragment;
 
 import butterknife.ButterKnife;
@@ -69,6 +75,26 @@ public abstract class BaseFragment extends RxFragment {
         }
         compositeDisposable.add(disposable);
 
+    }
+    protected void loadAvatar(String url, ImageView ivAvatar) {
+        if (url == null || ivAvatar == null) {
+            return;
+        }
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontTransform()
+                .dontAnimate()
+                .into(ivAvatar);
+    }
+
+    protected void loadFullName(String fullName, TextView tvFullName) {
+        if (StringUtils.isEmpty(fullName) || tvFullName == null) {
+            return;
+        }
+        tvFullName.setText(fullName);
     }
 
     protected abstract void addEvents();

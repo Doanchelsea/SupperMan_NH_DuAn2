@@ -16,7 +16,7 @@
     <color name="white1">#FFFAFA</color>
     <color name="hotline_color_button_text">#3F51B5</color>
     <color name="gray">#D8D8D8</color>
-    <color name="blue">#0033FF</color>
+    <color name="blue">#27D6F4</color>
     <color name="colorButtonOrangeClick">#FF5555</color>
     <color name="colorButtonOrange">#fe9c43</color>
 
@@ -24,5 +24,9 @@
     <color name="colorButtonAdd">#CCFF99</color>
     <color name="confirm_color_button_text">#3F51B5</color>
 
+    <color name="gray_50">#f9f9f9</color>
+
     <color name="bg_color_alert_dialog">#4CAF50</color>
+    <color name="update_info_color_text_save">#4CAF50</color>
+    <color name="update_info_color_border_avatar">#4CAF50</color>
 </resources>

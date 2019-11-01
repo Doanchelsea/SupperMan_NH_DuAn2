@@ -13,5 +13,9 @@
         android:id="@+id/menu_navigation_ratting"
         android:icon="@drawable/ic_menu_notification"
         android:title="Bàn ăn" />
+    <item
+        android:id="@+id/menu_navigation_thong_tin"
+        android:icon="@drawable/ic_menu_account"
+        android:title="Thông tin" />
 
 </menu>

@@ -15,6 +15,7 @@ import com.example.supperman_nh_duan2.model.manage.Manage;
 import com.example.supperman_nh_duan2.ui.home.HomeContract;
 import com.example.supperman_nh_duan2.ui.home.HomePresenter;
 import com.example.supperman_nh_duan2.ui.home.diglog.DiglogManage;
+import com.example.supperman_nh_duan2.ui.main.MainActivity;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.tapadoo.alerter.Alerter;
 
@@ -37,6 +38,7 @@ public class OfflineFragment extends BaseFragment implements HomeContract, Manag
     List<Manage> list = new ArrayList<>();
     ManageAdapter adapter;
     LinearLayoutManager manager = new LinearLayoutManager(activity);
+    boolean isLoad = false;
 
     public static OfflineFragment newInstance() {
         Bundle args = new Bundle();
@@ -48,14 +50,17 @@ public class OfflineFragment extends BaseFragment implements HomeContract, Manag
     @Override
     public void onResume() {
         super.onResume();
-        presenter.getData(list,"offline");
         EventBus.getDefault().register(this);
+        if (isLoad == true){
+            presenter.getData(list,"offline");
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         EventBus.getDefault().unregister(this);
+        isLoad = true;
     }
 
     @Override
@@ -102,6 +107,7 @@ public class OfflineFragment extends BaseFragment implements HomeContract, Manag
 
     @Override
     public void loadData(List<Manage> manages) {
+        recyclerView.setVisibility(View.VISIBLE);
         adapter = new ManageAdapter(activity,manages,this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(manager);
@@ -114,6 +120,7 @@ public class OfflineFragment extends BaseFragment implements HomeContract, Manag
     public void ShowError() {
         mshimmerFrameLayout.stopShimmer();
         mshimmerFrameLayout.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
     }
 
     @Override
@@ -132,8 +139,9 @@ public class OfflineFragment extends BaseFragment implements HomeContract, Manag
     public void addThanhtoan(int id) {
         presenter.delete(id);
         Alerter.create(activity)
-                .setTitle(R.string.app_name)
+                .setTitle(MainActivity.NAME)
                 .setText("Món ăn đã hoàn thành")
+                .setDuration(1000)
                 .setBackgroundColorRes(R.color.bg_color_alert_dialog)
                 .show();
     }

@@ -1,17 +1,19 @@
 package com.example.supperman_nh_duan2.ui.menu.detail;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.base.BaseDiglog;
+import com.example.supperman_nh_duan2.lisenner.ListennerDetail;
 import com.example.supperman_nh_duan2.untils.SoUtils;
+import com.example.supperman_nh_duan2.untils.StringUtils;
 import com.jakewharton.rxbinding3.view.RxView;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import es.dmoral.toasty.Toasty;
@@ -61,13 +63,21 @@ public class DigLogDetail extends BaseDiglog {
     @Override
     protected void addEvents() {
       int soban = getArguments().getInt("SOBAN",0);
-        addDisposable(RxView.clicks(btnCancel).subscribe(unit -> {
+        addDisposable(RxView.clicks(btnCancel)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             hideDialog();
         }));
-        addDisposable(RxView.clicks(btnAccept).subscribe(unit -> {
+        addDisposable(RxView.clicks(btnAccept)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .subscribe(unit -> {
             String banan = ed_ban_an.getText().toString().trim();
             if (!SoUtils.isVaidSo(banan)){
                 Toasty.warning(activity,"Đây không phải là số").show();
+            }else if (Integer.valueOf(banan) <= 0){
+                Toasty.warning(activity,"Bàn ăn phải lớn hơn 0").show();
             }else if (Integer.valueOf(banan) > soban){
                 Toasty.warning(activity,"Bàn ăn không tồn tại").show();
             }else {
