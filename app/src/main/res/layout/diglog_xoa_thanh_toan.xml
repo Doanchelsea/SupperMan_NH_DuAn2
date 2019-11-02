@@ -1,83 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_dialog">
 
     <TextView
-        android:paddingTop="@dimen/space_6"
-        android:textStyle="bold"
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_menu_text_notifications"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
         android:maxLines="1"
         android:lines="1"
-        android:id="@+id/txtMessage"
+        android:id="@+id/tv_text_xoa_thanh_toan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="@dimen/space_10"
-        android:text="@string/driver_wating"
+        android:padding="@dimen/space_16"
+        android:text="Bạn muốn xóa món ăn thanh toán ?"
         android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="@dimen/text_size_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <View
-        android:id="@+id/view2"
+        android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_1"
         android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtMessage" />
+        app:layout_constraintTop_toBottomOf="@id/tv_text_xoa_thanh_toan" />
 
     <Button
-        android:id="@+id/btnCancel"
+        android:id="@+id/btn_cancel_xoa_thanh_toan"
         style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/confirm_color_button_text"
         android:layout_width="0dp"
         android:layout_height="@dimen/space_40"
-        android:text="@string/home_dialog_button_text_cancel"
+        android:text="Hủy bỏ"
         android:textAllCaps="false"
-        android:textColor="@color/hotline_color_button_text"
         android:textSize="@dimen/text_size_14"
         app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view2" />
+        app:layout_constraintTop_toBottomOf="@id/view1" />
 
     <View
         android:id="@+id/view"
         android:layout_width="@dimen/space_1"
         android:layout_height="@dimen/space_40"
         android:background="@color/gray"
-        app:layout_constraintEnd_toStartOf="@+id/btnAccept"
+        app:layout_constraintEnd_toStartOf="@+id/btn_xac_nhan_xoa_thanh_toan"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnCancel"
-        app:layout_constraintTop_toBottomOf="@id/view2" />
-
+        app:layout_constraintStart_toEndOf="@+id/btn_cancel_xoa_thanh_toan"
+        app:layout_constraintTop_toBottomOf="@id/view1" />
+    
     <Button
-        android:id="@+id/btnAccept"
+        android:id="@+id/btn_xac_nhan_xoa_thanh_toan"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_40"
-        android:text="@string/register_button_text_confirm"
+        android:layout_height="40dp"
+        android:text="Xác nhận"
         android:textAllCaps="false"
-        android:textColor="@color/hotline_color_button_text"
+        android:textColor="@color/confirm_color_button_text"
         android:textSize="@dimen/text_size_14"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@id/view2" />
+        app:layout_constraintTop_toBottomOf="@id/view1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

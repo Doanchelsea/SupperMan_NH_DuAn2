@@ -57,7 +57,7 @@ public class DiglogComfimMenu extends BaseDiglog {
     @Override
     protected void addEvents() {
         menu = getArguments().getParcelable("MENU");
-        tv_text_xoa_menu.setText("Bạn có muốn xóa món "+menu.getNames()+" không ?");
+        tv_text_xoa_menu.setText("Bạn muốn xóa món "+menu.getNames()+" ?");
         addDisposable(RxView.clicks(btn_cancel_xoa_menu)
                 .throttleFirst(2, TimeUnit.SECONDS)
                 .compose(bindToLifecycle())

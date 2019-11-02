@@ -129,7 +129,7 @@ public class HistoryActivity extends BaseActivity implements Connectable, Discon
         recyclerView.setAdapter(historyAdapter);
 
         if (show == false){
-            historyAdapter.setOnLoadMore(show);
+            historyAdapter.setOnLoadMore(false);
         }
     }
 

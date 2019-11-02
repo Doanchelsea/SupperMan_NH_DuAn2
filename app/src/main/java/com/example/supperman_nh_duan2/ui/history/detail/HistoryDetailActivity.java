@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.adapter.ThanhToanAdapter;
+import com.example.supperman_nh_duan2.adapter.ThanhToanLSAdapter;
 import com.example.supperman_nh_duan2.api.Server;
 import com.example.supperman_nh_duan2.base.BaseActivity;
 import com.example.supperman_nh_duan2.model.ThanhToan;
@@ -46,7 +47,7 @@ public class HistoryDetailActivity extends BaseActivity implements Connectable, 
     @BindView(R.id.activity_register_iv_back_history_detail)
     ImageView imgBack;
     private List<ThanhToan> thanhToans = new ArrayList<>();
-    private ThanhToanAdapter thanhToanAdapter;
+    private ThanhToanLSAdapter thanhToanAdapter;
     private LinearLayoutManager manager = new LinearLayoutManager(this);
 
     public static void startActivity(Activity context,int iduser,String idtrangthai){
@@ -139,9 +140,11 @@ public class HistoryDetailActivity extends BaseActivity implements Connectable, 
 
     @Override
     public void ShowList(List<ThanhToan> thanhToans) {
-        thanhToanAdapter = new ThanhToanAdapter(this,thanhToans);
+        thanhToanAdapter = new ThanhToanLSAdapter(this,thanhToans);
         re_history_detail.setLayoutManager(manager);
         re_history_detail.setAdapter(thanhToanAdapter);
+
+
     }
 
     @Override

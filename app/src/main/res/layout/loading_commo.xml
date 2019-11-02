@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="Loading"
         android:textColor="@android:color/black"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/dialog_trip_notification_loading_indicator"/>
@@ -18,9 +18,9 @@
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/dialog_trip_notification_loading_indicator"
         style="@style/AVLoadingIndicatorView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="@dimen/space_80"
+        android:layout_height="@dimen/space_80"
+        android:layout_marginTop="@dimen/space_8"
         android:visibility="visible"
         app:indicatorColor="#00BCD4"
         app:indicatorName="LineSpinFadeLoaderIndicator"

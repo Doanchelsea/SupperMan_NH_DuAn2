@@ -9,8 +9,8 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_history"
         android:src="@drawable/bg_dep"
-        android:layout_width="64dp"
-        android:layout_height="64dp" />
+        android:layout_width="@dimen/space_60"
+        android:layout_height="@dimen/space_60" />
     <TextView
         android:id="@+id/tv_ban_history"
         android:layout_marginLeft="@dimen/space_5"

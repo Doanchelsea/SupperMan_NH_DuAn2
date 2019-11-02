@@ -13,14 +13,14 @@
 
     <View
         android:id="@+id/name"
-        android:layout_width="150dp"
-        android:layout_height="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/space_150"
+        android:layout_height="@dimen/space_10"
+        android:layout_marginBottom="@dimen/space_10"
         android:layout_toRightOf="@id/thumbnail"
         android:background="@color/placeholder_bg" />
 
     <View
-        android:layout_width="100dp"
+        android:layout_width="@dimen/space_100"
         android:layout_height="@dimen/placeholder_text_height"
         android:layout_below="@id/name"
         android:layout_toRightOf="@id/thumbnail"
@@ -37,21 +37,21 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/placeholder_text_height"
-            android:layout_marginRight="100dp"
+            android:layout_marginRight="@dimen/space_100"
             android:background="@color/placeholder_bg" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/placeholder_text_height"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/space_50"
+            android:layout_marginTop="@dimen/space_10"
             android:background="@color/placeholder_bg" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/placeholder_text_height"
-            android:layout_marginRight="160dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/space_150"
+            android:layout_marginTop="@dimen/space_10"
             android:background="@color/placeholder_bg" />
 
     </LinearLayout>

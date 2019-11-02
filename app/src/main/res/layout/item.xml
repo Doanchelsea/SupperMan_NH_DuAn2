@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_notification_swipe_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="@dimen/space_8"
+    android:layout_marginEnd="@dimen/space_8"
+    android:layout_marginTop="@dimen/space_8"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_80">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_notification_container_clear"
+        android:layout_width="@dimen/space_100"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/item_notification_tv_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_16"
+            android:text="Xóa"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="@dimen/space_16" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/item_notification_iv_thumbnail"
+            android:layout_width="@dimen/space_120"
+            android:layout_height="0dp"
+            android:contentDescription="notification_cd_ic_thumbnail"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_clock"/>
+
+        <TextView
+            android:id="@+id/item_notification_tv_notification_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            android:layout_marginEnd="@dimen/space_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/item_notification_iv_thumbnail"
+            app:layout_constraintTop_toTopOf="@id/item_notification_iv_thumbnail"
+            app:layout_constraintBottom_toTopOf="@id/item_notification_tv_last_modify_date"
+            tools:text="Không tìm thấy tài xế"
+            android:layout_marginRight="@dimen/space_18" />
+
+        <TextView
+            android:id="@+id/item_notification_tv_last_modify_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/item_notification_iv_thumbnail"
+            app:layout_constraintBottom_toBottomOf="@id/item_notification_iv_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/item_notification_tv_notification_content"
+            tools:text="14/9/2019 10:00" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.daimajia.swipe.SwipeLayout>
+
+
+

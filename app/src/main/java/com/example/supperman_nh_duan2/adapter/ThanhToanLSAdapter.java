@@ -1,7 +1,6 @@
 package com.example.supperman_nh_duan2.adapter;
 
 import android.content.Context;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,28 +18,24 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.daimajia.swipe.SwipeLayout;
 import com.example.supperman_nh_duan2.R;
 import com.example.supperman_nh_duan2.api.Server;
-import com.example.supperman_nh_duan2.lisenner.ThanhToanLisenner;
 import com.example.supperman_nh_duan2.model.ThanhToan;
 import com.example.supperman_nh_duan2.untils.FormatUtils;
 
 import java.util.List;
 
-public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
+public class ThanhToanLSAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     List<ThanhToan> list;
-    ThanhToanLisenner thanhToanLisenner;
 
-    public ThanhToanAdapter(Context context, List<ThanhToan> list, ThanhToanLisenner thanhToanLisenner) {
+    public ThanhToanLSAdapter(Context context, List<ThanhToan> list) {
         this.context = context;
         this.list = list;
-        this.thanhToanLisenner = thanhToanLisenner;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_thanh_toan,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_thanh_toan_ls,parent,false);
         return new ViewHodel(view);
     }
 
@@ -49,11 +43,7 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ThanhToan thanhToan = list.get(position);
         ViewHodel viewHodel = (ViewHodel) holder;
-//        viewHodel.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
-//        viewHodel.swipeLayout.addDrag(SwipeLayout.DragEdge.Right,viewHodel.relativeLayout);
-        viewHodel.imgXoa.setOnClickListener(view -> {
-            thanhToanLisenner.delete(thanhToan.getId());
-        });
+
         viewHodel.tvName.setMaxLines(1);
         viewHodel.tvName.setEllipsize(TextUtils.TruncateAt.END);
         viewHodel.tvName.setText(thanhToan.getNamemonan());
@@ -79,8 +69,6 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return list.size();
     }
     public class ViewHodel extends RecyclerView.ViewHolder {
-        RelativeLayout relativeLayout;
-        public SwipeLayout swipeLayout;
         public TextView tvName,tvPrice,tvSoluong;
         public ImageView imageView,imgXoa;
         public ViewHodel(@NonNull View itemView) {
@@ -89,9 +77,6 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvPrice = itemView.findViewById(R.id.tv_item_price_thanh_toan);
             tvSoluong = itemView.findViewById(R.id.tv_item_so_luong_thanh_toan);
             imageView = itemView.findViewById(R.id.img_item_thanh_toan);
-//            swipeLayout = itemView.findViewById(R.id.swipeLayout);
-//            relativeLayout = itemView.findViewById(R.id.relativeLayout_swipe);
-            imgXoa = itemView.findViewById(R.id.img_xoa_thanh_toan);
 
 
         }

@@ -14,9 +14,11 @@ import com.example.supperman_nh_duan2.adapter.ThanhToanAdapter;
 import com.example.supperman_nh_duan2.api.eventbus.HistoryEvent;
 import com.example.supperman_nh_duan2.api.eventbus.NewEvent;
 import com.example.supperman_nh_duan2.base.BaseActivity;
+import com.example.supperman_nh_duan2.lisenner.LisennerDeleteThanhToan;
 import com.example.supperman_nh_duan2.lisenner.ThanhToanLisenner;
 import com.example.supperman_nh_duan2.model.ThanhToan;
 import com.example.supperman_nh_duan2.ui.main.MainActivity;
+import com.example.supperman_nh_duan2.ui.thanhtoan.dialog.DiglogDelete;
 import com.example.supperman_nh_duan2.ui.thanhtoan.dialog.DiglogThanhToan;
 import com.example.supperman_nh_duan2.untils.FormatUtils;
 import com.jakewharton.rxbinding3.view.RxView;
@@ -41,7 +43,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class ThanhToanActivity extends BaseActivity implements Connectable, Disconnectable, Bindable,ThanhToanContract, ThanhToanLisenner {
+public class ThanhToanActivity extends BaseActivity implements Connectable, Disconnectable, Bindable,ThanhToanContract, ThanhToanLisenner, LisennerDeleteThanhToan {
     int ban;
     double tong1;
     @BindView(R.id.tv_ban_thanh_toan)
@@ -136,8 +138,9 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
     @Override
     public void ShowList(List<ThanhToan> thanhToans) {
         recy_thanh_toan.setVisibility(View.VISIBLE);
-        adapter = new ThanhToanAdapter(this,thanhToans);
+        adapter = new ThanhToanAdapter(this,thanhToans,this);
         recy_thanh_toan.setHasFixedSize(true);
+        recy_thanh_toan.setNestedScrollingEnabled(false);
         recy_thanh_toan.setLayoutManager(manager);
         recy_thanh_toan.setAdapter(adapter);
     }
@@ -181,7 +184,31 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
     }
 
     @Override
+    public void showDelete() {
+        presenter.getData(thanhToans1,ban);
+    }
+
+    @Override
+    public void Error() {
+        tv_price_thanh_toan.setText("0 VNĐ");
+        isOnClick = false;
+        recy_thanh_toan.setVisibility(View.GONE);
+    }
+
+    @Override
     public void onClick(int iduser, double price, int ban) {
         presenter.addHistory(iduser,price,ban);
+    }
+
+    @Override
+    public void delete(int id) {
+            DiglogDelete dialog = DiglogDelete.getInstance(id);
+            dialog.show(getSupportFragmentManager(), dialog.getTag());
+
+    }
+
+    @Override
+    public void onClick(int id) {
+        presenter.delete(id);
     }
 }

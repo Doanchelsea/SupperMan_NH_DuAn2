@@ -62,7 +62,7 @@ public class DiglogDelete extends BaseDiglog {
     protected void addEvents() {
         int ban = getArguments().getInt("BAN",0);
 
-        tv_Messing.setText("Bạn có muốn xóa bàn "+ban+" không ?");
+        tv_Messing.setText("Bạn muốn xóa bàn "+ban+" ?");
         addDisposable(RxView.clicks(btnCancel)
                 .throttleFirst(2, TimeUnit.SECONDS)
                 .compose(bindToLifecycle())

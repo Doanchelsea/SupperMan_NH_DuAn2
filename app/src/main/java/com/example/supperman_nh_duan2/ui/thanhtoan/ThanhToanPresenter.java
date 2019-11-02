@@ -48,7 +48,7 @@ public class ThanhToanPresenter  {
             int soluong;
             int iduser;
             int tong = 0;
-            if (response != null) {
+            if (response != null && response.length() != 2) {
                 thanhToans.clear();
                 try {
                     JSONArray jsonArray = new JSONArray(response);
@@ -74,6 +74,8 @@ public class ThanhToanPresenter  {
                     e.printStackTrace();
                 }
 
+            }else {
+                thanhToanContract.Error();
             }
         },error -> {
             thanhToanContract.ShowError(R.string.error);
@@ -112,6 +114,22 @@ public class ThanhToanPresenter  {
                 hashMap.put("images",MainActivity.IMAGE);
                 hashMap.put("tables",String.valueOf(ban));
                 hashMap.put("idtrangthai",idtrangthai);
+                return hashMap;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+    public void delete(int id){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest  = new StringRequest(Request.Method.POST,Server.duongdandeletethantoan,response -> {
+            thanhToanContract.showDelete();
+        },error -> {
+
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String,String> hashMap = new HashMap<>();
+                hashMap.put("id",String.valueOf(id));
                 return hashMap;
             }
         };

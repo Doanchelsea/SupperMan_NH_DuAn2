@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipeLayout"
     android:layout_margin="@dimen/space_4"
     android:background="@drawable/bg_dialog"
     android:layout_height="@dimen/space_85"
+    app:cardCornerRadius="4dp"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout_swipe"
-        android:gravity="center"
-        android:layout_width="@dimen/space_80"
-        android:layout_height="@dimen/space_80">
-
-        <ImageView
-            android:id="@+id/img_xoa_thanh_toan"
-            android:tint="@color/red"
-            android:src="@drawable/ic_delete"
-            android:layout_width="@dimen/space_36"
-            android:layout_height="@dimen/space_36" />
-
-    </RelativeLayout>
 
     <RelativeLayout
         android:padding="@dimen/space_5"
@@ -64,4 +52,4 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
 
-    </com.daimajia.swipe.SwipeLayout>
+    </androidx.cardview.widget.CardView>

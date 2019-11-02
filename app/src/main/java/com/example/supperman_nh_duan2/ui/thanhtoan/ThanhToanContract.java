@@ -9,4 +9,6 @@ public interface ThanhToanContract {
     void ShowPrice(double tong,double dir,int iduser);
     void ShowHistory();
     void ShowError(int error);
+    void showDelete();
+    void Error();
 }
