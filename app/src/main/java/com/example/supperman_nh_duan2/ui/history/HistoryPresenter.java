@@ -48,8 +48,9 @@ public class HistoryPresenter {
                     int tables = jsonObject.getInt("tables");
                     String idtrangthai = jsonObject.getString("idtrangthai");
                     histories.add(new History(id,iduser,idnhahang,price,date,namenh,images,tables,idtrangthai));
-                    historyContract.showList(histories,true);
+
                 }
+                historyContract.showList(histories,true);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

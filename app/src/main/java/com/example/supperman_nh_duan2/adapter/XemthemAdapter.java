@@ -19,6 +19,7 @@ import com.example.supperman_nh_duan2.lisenner.DatMonLisenner;
 import com.example.supperman_nh_duan2.model.Menu;
 import com.example.supperman_nh_duan2.ui.menu.xemthem.XemThemActivity;
 import com.example.supperman_nh_duan2.untils.FormatUtils;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
@@ -116,7 +117,7 @@ public class XemthemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return list.size();
     }
     public class ViewHordel extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        RoundedImageView imageView;
         TextView tv_namenh,tv_name_mon_an,tvPrice,tvDate;
         public ViewHordel(@NonNull View itemView) {
             super(itemView);

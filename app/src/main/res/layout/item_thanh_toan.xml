@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipeLayout"
     android:layout_margin="@dimen/space_4"
     android:background="@drawable/bg_dialog"
@@ -26,10 +27,11 @@
         android:padding="@dimen/space_5"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_85">
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:scaleType="fitXY"
             android:id="@+id/img_item_thanh_toan"
             android:src="@color/black"
+            app:riv_corner_radius="@dimen/space_10"
             android:layout_width="@dimen/space_75"
             android:layout_height="@dimen/space_75" />
         <TextView

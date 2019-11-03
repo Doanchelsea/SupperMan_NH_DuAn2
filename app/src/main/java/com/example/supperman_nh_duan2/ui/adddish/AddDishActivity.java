@@ -29,6 +29,7 @@ import com.example.supperman_nh_duan2.ui.main.MainActivity;
 import com.example.supperman_nh_duan2.untils.StringUtils;
 import com.example.supperman_nh_duan2.untils.ValidateUtils;
 import com.jakewharton.rxbinding3.view.RxView;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
@@ -54,7 +55,7 @@ public class AddDishActivity extends BaseActivity implements Connectable, Discon
     @BindView(R.id.imgThemAnhMonAn)
     ImageView imgThemAnhMonAn;
     @BindView(R.id.imgAnhMonAn)
-    ImageView imgAnhMonAn;
+    RoundedImageView imgAnhMonAn;
     @BindView(R.id.btn_add_dish)
     Button btn_add_dish;
     @BindView(R.id.activity_register_iv_back)

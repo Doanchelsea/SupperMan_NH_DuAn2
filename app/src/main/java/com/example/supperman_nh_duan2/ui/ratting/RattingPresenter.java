@@ -48,8 +48,8 @@ public class RattingPresenter {
                                 soban = jsonObject.getInt("soban");
                                 idnhahang = jsonObject.getInt("idnhahang");
                                 banans.add(new Banan(id,soban,idnhahang));
-                                rattingContract.show(banans);
                             }
+                            rattingContract.show(banans);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -111,6 +111,7 @@ public class RattingPresenter {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String,String> hashMap = new HashMap<>();
                 hashMap.put("soban", ""+ban);
+                hashMap.put("idnhahang", ""+MainActivity.ID);
                 return hashMap;
             }
         };

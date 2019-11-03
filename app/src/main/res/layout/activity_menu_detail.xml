@@ -118,7 +118,8 @@
                 </Spinner>
 
             </RelativeLayout>
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
+                app:riv_corner_radius="@dimen/space_10"
                 android:scaleType="fitXY"
                 android:id="@+id/img_mon_an"
                 android:layout_width="match_parent"

@@ -82,6 +82,10 @@ public class OfflineFragment extends BaseFragment implements HomeContract, Manag
 
     @Override
     protected void addEvents() {
+        adapter = new ManageAdapter(activity,list,this);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
         presenter.getData(list,"offline");
     }
 
@@ -108,10 +112,7 @@ public class OfflineFragment extends BaseFragment implements HomeContract, Manag
     @Override
     public void loadData(List<Manage> manages) {
         recyclerView.setVisibility(View.VISIBLE);
-        adapter = new ManageAdapter(activity,manages,this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         mshimmerFrameLayout.stopShimmer();
         mshimmerFrameLayout.setVisibility(View.GONE);
     }

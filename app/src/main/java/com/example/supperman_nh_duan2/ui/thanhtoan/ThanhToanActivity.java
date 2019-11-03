@@ -104,6 +104,11 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
 
     @Override
     protected void addEvents() {
+        adapter = new ThanhToanAdapter(this,thanhToans1,this);
+        recy_thanh_toan.setHasFixedSize(true);
+        recy_thanh_toan.setLayoutManager(manager);
+        recy_thanh_toan.setAdapter(adapter);
+
         ban = getIntent().getIntExtra("BAN",0);
         tv_ban_thanh_toan.setText("Bàn "+ban);
         addDisposable(RxView.clicks(img_thanh_toan)
@@ -113,9 +118,8 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
             onBackPressed();
             finish();
         }));
+
         presenter.getData(thanhToans1,ban);
-
-
     }
 
     @Override
@@ -138,11 +142,7 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
     @Override
     public void ShowList(List<ThanhToan> thanhToans) {
         recy_thanh_toan.setVisibility(View.VISIBLE);
-        adapter = new ThanhToanAdapter(this,thanhToans,this);
-        recy_thanh_toan.setHasFixedSize(true);
-        recy_thanh_toan.setNestedScrollingEnabled(false);
-        recy_thanh_toan.setLayoutManager(manager);
-        recy_thanh_toan.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

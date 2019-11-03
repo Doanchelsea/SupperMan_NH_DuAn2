@@ -63,13 +63,13 @@ public class ThanhToanPresenter  {
                         soluong = jsonObject.getInt("soluong");
                         iduser = jsonObject.getInt("iduser");
                         thanhToans.add(new ThanhToan(id,namemonan,images,price,banan,discounts,soluong,iduser));
-                        thanhToanContract.ShowList(thanhToans);
                         tong = tong + (price*soluong) ;
                         if (i == jsonArray.length()-1){
                             double tong1 = tong;
                             thanhToanContract.ShowPrice(tong1,thanhToans.get(0).getDiscounts(),thanhToans.get(0).getIduer());
                         }
                     }
+                    thanhToanContract.ShowList(thanhToans);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

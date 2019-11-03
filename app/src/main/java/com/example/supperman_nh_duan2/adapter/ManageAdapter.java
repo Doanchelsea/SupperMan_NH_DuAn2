@@ -20,6 +20,7 @@ import com.example.supperman_nh_duan2.lisenner.ManageLisenner;
 import com.example.supperman_nh_duan2.lisenner.OnlineLisenner;
 import com.example.supperman_nh_duan2.model.manage.Manage;
 import com.example.supperman_nh_duan2.untils.FormatUtils;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
@@ -100,7 +101,7 @@ public class ManageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvName,tvPrice,tvTime,tvStatus;
-        public ImageView imgManage;
+        public RoundedImageView imgManage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvPrice = itemView.findViewById(R.id.tvPrice);

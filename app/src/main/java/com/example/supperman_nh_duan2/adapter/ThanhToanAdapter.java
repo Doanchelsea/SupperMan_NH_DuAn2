@@ -23,6 +23,7 @@ import com.example.supperman_nh_duan2.api.Server;
 import com.example.supperman_nh_duan2.lisenner.ThanhToanLisenner;
 import com.example.supperman_nh_duan2.model.ThanhToan;
 import com.example.supperman_nh_duan2.untils.FormatUtils;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
@@ -79,10 +80,9 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return list.size();
     }
     public class ViewHodel extends RecyclerView.ViewHolder {
-        RelativeLayout relativeLayout;
-        public SwipeLayout swipeLayout;
         public TextView tvName,tvPrice,tvSoluong;
-        public ImageView imageView,imgXoa;
+        public ImageView imgXoa;
+        public RoundedImageView imageView;
         public ViewHodel(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_mon_thanh_toan);

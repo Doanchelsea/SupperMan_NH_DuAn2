@@ -36,8 +36,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HistoryActivity extends BaseActivity implements Connectable, Disconnectable, Bindable, HistoryContract, HistoryLisenner {
 
-
-
     public static void startActivity(Activity context){
         context.startActivity(new Intent(context, HistoryActivity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
@@ -87,6 +85,7 @@ public class HistoryActivity extends BaseActivity implements Connectable, Discon
 
     @Override
     protected void addEvents() {
+        initAdapter();
         presenter.getData(histories,page,space);
         recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(manager) {
             @Override
@@ -123,11 +122,8 @@ public class HistoryActivity extends BaseActivity implements Connectable, Discon
 
     @Override
     public void showList(List<History> histories, boolean show) {
-        historyAdapter = new HistoryAdapter(this,histories,this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(historyAdapter);
-
+        historyAdapter.notifyDataSetChanged();
+        
         if (show == false){
             historyAdapter.setOnLoadMore(false);
         }
@@ -141,5 +137,12 @@ public class HistoryActivity extends BaseActivity implements Connectable, Discon
     @Override
     public void onClick(int iduser,String idtrangthai) {
         HistoryDetailActivity.startActivity(this,iduser,idtrangthai);
+    }
+
+    private void initAdapter(){
+        historyAdapter = new HistoryAdapter(this,histories,this);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(historyAdapter);
     }
 }

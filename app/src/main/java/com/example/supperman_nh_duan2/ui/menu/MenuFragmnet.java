@@ -79,6 +79,27 @@ public class MenuFragmnet extends BaseFragment implements MenuContract, DatMonLi
 
     @Override
     protected void addEvents() {
+
+
+        menuAdapter = new MenuAdapter(this,activity,list);
+        re_menu_lau_nuong.setHasFixedSize(true);
+        re_menu_lau_nuong.setLayoutManager(manager);
+        re_menu_lau_nuong.setAdapter(menuAdapter);
+
+
+
+        menuAdapter1 = new MenuAdapter(this,activity,list1);
+        re_menu_do_an.setHasFixedSize(true);
+        re_menu_do_an.setLayoutManager(manager1);
+        re_menu_do_an.setAdapter(menuAdapter1);
+
+
+
+        menuAdapter2 = new MenuAdapter(this,activity,list2);
+        re_menu_nuoc_uong.setHasFixedSize(true);
+        re_menu_nuoc_uong.setLayoutManager(manager2);
+        re_menu_nuoc_uong.setAdapter(menuAdapter2);
+
         menuPresenter = new MenuPresenter(activity,this);
         menuPresenter.getData(list,""+1);
         menuPresenter.getData1(list1,""+2);
@@ -134,28 +155,19 @@ public class MenuFragmnet extends BaseFragment implements MenuContract, DatMonLi
     @Override
     public void showList(List<Menu> menus) {
         re_menu_lau_nuong.setVisibility(View.VISIBLE);
-        menuAdapter = new MenuAdapter(this,activity,menus);
-        re_menu_lau_nuong.setHasFixedSize(true);
-        re_menu_lau_nuong.setLayoutManager(manager);
-        re_menu_lau_nuong.setAdapter(menuAdapter);
+        menuAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showList1(List<Menu> menus) {
         re_menu_do_an.setVisibility(View.VISIBLE);
-        menuAdapter1 = new MenuAdapter(this,activity,menus);
-        re_menu_do_an.setHasFixedSize(true);
-        re_menu_do_an.setLayoutManager(manager1);
-        re_menu_do_an.setAdapter(menuAdapter1);
+        menuAdapter1.notifyDataSetChanged();
     }
 
     @Override
     public void showList2(List<Menu> menus) {
         re_menu_nuoc_uong.setVisibility(View.VISIBLE);
-        menuAdapter2 = new MenuAdapter(this,activity,menus);
-        re_menu_nuoc_uong.setHasFixedSize(true);
-        re_menu_nuoc_uong.setLayoutManager(manager2);
-        re_menu_nuoc_uong.setAdapter(menuAdapter2);
+        menuAdapter2.notifyDataSetChanged();
     }
 
     @Override

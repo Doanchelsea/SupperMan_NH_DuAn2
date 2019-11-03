@@ -14,10 +14,11 @@
         android:padding="@dimen/space_5"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_85">
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:scaleType="fitXY"
             android:id="@+id/img_item_thanh_toan"
             android:src="@color/black"
+            app:riv_corner_radius="@dimen/space_10"
             android:layout_width="@dimen/space_75"
             android:layout_height="@dimen/space_75" />
         <TextView

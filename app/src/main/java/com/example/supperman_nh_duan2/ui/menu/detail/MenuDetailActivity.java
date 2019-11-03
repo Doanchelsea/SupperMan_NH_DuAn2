@@ -17,6 +17,7 @@ import com.example.supperman_nh_duan2.model.Menu;
 import com.example.supperman_nh_duan2.ui.updatemenu.UpdateMenuActivity;
 import com.example.supperman_nh_duan2.untils.FormatUtils;
 import com.jakewharton.rxbinding3.view.RxView;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
@@ -37,7 +38,7 @@ public class MenuDetailActivity extends BaseActivity implements Connectable, Dis
     @BindView(R.id.tv_date)
     TextView tv_date;
     @BindView(R.id.img_mon_an)
-    ImageView img_mon_an;
+    RoundedImageView img_mon_an;
     @BindView(R.id.spiner_mon_an)
     Spinner spinner;
     @BindView(R.id.tv_time_date)

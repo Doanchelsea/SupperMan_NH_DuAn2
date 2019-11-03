@@ -76,6 +76,10 @@ public class OnlineFragment extends BaseFragment implements HomeContract, Online
     }
         @Override
     protected void addEvents() {
+            adapter = new ManageAdapter(activity,list,this);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(manager);
+            recyclerView.setAdapter(adapter);
         presenter.getData(list,"online");
     }
 
@@ -102,10 +106,7 @@ public class OnlineFragment extends BaseFragment implements HomeContract, Online
     @Override
     public void loadData(List<Manage> manages) {
         recyclerView.setVisibility(View.VISIBLE);
-        adapter = new ManageAdapter(activity,manages,this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         mshimmerFrameLayout.stopShimmer();
         mshimmerFrameLayout.setVisibility(View.GONE);
 

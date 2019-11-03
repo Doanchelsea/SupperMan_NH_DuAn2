@@ -96,6 +96,12 @@ public class XemThemActivity extends BaseActivity implements Connectable, Discon
             onBackPressed();
             finish();
         }));
+
+        xemthemAdapter = new XemthemAdapter(this,menus,this);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(xemthemAdapter);
+
         xemthemPresenter.getData(menus,String.valueOf(idmon),page);
         recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(manager) {
             @Override
@@ -124,9 +130,7 @@ public class XemThemActivity extends BaseActivity implements Connectable, Discon
 
     @Override
     public void showlist(List<Menu> menus, boolean show) {
-        xemthemAdapter = new XemthemAdapter(this,menus,this);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(xemthemAdapter);
+        xemthemAdapter.notifyDataSetChanged();
         if (show == false){
             xemthemAdapter.setOnLoadMore(show);
         }

@@ -24,6 +24,7 @@ import com.example.supperman_nh_duan2.model.Menu;
 import com.example.supperman_nh_duan2.untils.StringUtils;
 import com.example.supperman_nh_duan2.untils.ValidateUtils;
 import com.jakewharton.rxbinding3.view.RxView;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
@@ -51,7 +52,7 @@ public class UpdateMenuActivity extends BaseActivity implements Connectable, Dis
     @BindView(R.id.activity_register_iv_back_update)
     ImageView img_back;
     @BindView(R.id.img_update)
-    ImageView imgUpdate;
+    RoundedImageView imgUpdate;
     @BindView(R.id.img_add_update)
     ImageView img_add_update;
     @BindView(R.id.radioBuaTrua_update)

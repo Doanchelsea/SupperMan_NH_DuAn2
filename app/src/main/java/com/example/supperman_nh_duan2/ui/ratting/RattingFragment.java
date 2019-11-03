@@ -49,6 +49,10 @@ public class RattingFragment extends BaseFragment implements RattingContract, Li
     }
     @Override
     protected void addEvents() {
+        bananAdapter = new BananAdapter(list,activity,this);
+        reBanan.setLayoutManager(manager);
+        reBanan.setAdapter(bananAdapter);
+
         presenter.getData(list);
         addDisposable(RxView.clicks(imgAddbanan)
                 .throttleFirst(2, TimeUnit.SECONDS)
@@ -90,9 +94,7 @@ public class RattingFragment extends BaseFragment implements RattingContract, Li
     @Override
     public void show(List<Banan> banans) {
         reBanan.setVisibility(View.VISIBLE);
-        bananAdapter = new BananAdapter(banans,activity,this);
-        reBanan.setLayoutManager(manager);
-        reBanan.setAdapter(bananAdapter);
+        bananAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -112,8 +114,10 @@ public class RattingFragment extends BaseFragment implements RattingContract, Li
 
     @Override
     public void soban(int ban) {
-        DiglogDelete dialog = DiglogDelete.newInstance(ban);
-        dialog.show(getChildFragmentManager(), dialog.getTag());
+        if (ban > 0){
+            DiglogDelete dialog = DiglogDelete.newInstance(ban);
+            dialog.show(getChildFragmentManager(), dialog.getTag());
+        }
     }
 
     @Override

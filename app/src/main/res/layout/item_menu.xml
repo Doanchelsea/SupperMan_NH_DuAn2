@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:layout_marginTop="@dimen/space_6"
     android:layout_marginBottom="@dimen/space_6"
     android:layout_height="wrap_content">
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:scaleType="fitXY"
+        app:riv_corner_radius="@dimen/space_8"
         android:layout_marginLeft="@dimen/space_6"
         android:layout_marginRight="@dimen/space_6"
         android:id="@+id/imgAvatar"

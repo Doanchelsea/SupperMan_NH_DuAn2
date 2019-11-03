@@ -41,7 +41,6 @@ public class XemthemPresenter {
             int idnhahang;
             String namenh;
             if (response != null && response.length() != 2) {
-                list.clear();
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -56,8 +55,8 @@ public class XemthemPresenter {
                         idnhahang = jsonObject.getInt("idnhahang");
                         namenh = jsonObject.getString("namenh");
                         list.add(new Menu(id,idmonan,dates,descriptions,images,names,prices,idnhahang,namenh));
-                        contract.showlist(list,true);
                     }
+                    contract.showlist(list,true);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

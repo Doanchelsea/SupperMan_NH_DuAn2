@@ -50,7 +50,6 @@ public class OnlineDetailPresenter {
                    String phone = jsonObject.getString("phone");
                    String images = jsonObject.getString("images");
                    contract.showUser(name,phone,images);
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

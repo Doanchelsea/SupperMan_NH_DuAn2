@@ -58,8 +58,8 @@ public class MenuPresenter {
                         idnhahang = jsonObject.getInt("idnhahang");
                         namenh = jsonObject.getString("namenh");
                         list.add(new Menu(id,idmonan,dates,descriptions,images,names,prices,idnhahang,namenh));
-                        menuContract.showList(list);
                     }
+                    menuContract.showList(list);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -110,8 +110,8 @@ public class MenuPresenter {
                         idnhahang = jsonObject.getInt("idnhahang");
                         namenh = jsonObject.getString("namenh");
                         list.add(new Menu(id,idmonan,dates,descriptions,images,names,prices,idnhahang,namenh));
-                        menuContract.showList1(list);
                     }
+                    menuContract.showList1(list);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -162,8 +162,8 @@ public class MenuPresenter {
                         idnhahang = jsonObject.getInt("idnhahang");
                         namenh = jsonObject.getString("namenh");
                         list.add(new Menu(id,idmonan,dates,descriptions,images,names,prices,idnhahang,namenh));
-                        menuContract.showList2(list);
                     }
+                    menuContract.showList2(list);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -25,5 +25,4 @@ public class Server {
     public static String duongdanrequestnh = "http://"+localhost+"/supper/requestnh.php";
     public static String duongdanhistorydetail = "http://"+localhost+"/supper/historydetail.php";
     public static String duongdandeletethantoan = "http://"+localhost+"/supper/deletethanhtoan.php";
-
 }

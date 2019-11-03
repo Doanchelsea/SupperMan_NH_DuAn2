@@ -77,9 +77,8 @@ public class HomePresenter {
                                 songuoi = jsonObject.getString("songuoi");
                                 iduser = jsonObject.getInt("iduser");
                                 list.add(new Manage(id,date,idname,image,name,price,status,time,discounts,tables,soluong,idnhahang,songuoi,iduser));
-                                homeContract.loadData(list);
-
                             }
+                            homeContract.loadData(list);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

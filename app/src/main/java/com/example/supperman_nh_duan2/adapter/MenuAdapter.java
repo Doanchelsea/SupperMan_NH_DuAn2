@@ -18,6 +18,7 @@ import com.example.supperman_nh_duan2.api.Server;
 import com.example.supperman_nh_duan2.lisenner.DatMonLisenner;
 import com.example.supperman_nh_duan2.model.Menu;
 import com.example.supperman_nh_duan2.untils.FormatUtils;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 
 import java.util.List;
@@ -80,7 +81,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvName,tvPrice,tvTime;
-        public ImageView imageView;
+        public RoundedImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTime = itemView.findViewById(R.id.tv_time_mon_an);
