@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_item_ban_an"
-        android:src="@drawable/bg_dep"
+        android:src="@drawable/img_banan"
         android:layout_marginTop="@dimen/space_4"
         android:layout_marginLeft="@dimen/space_4"
         android:layout_marginBottom="@dimen/space_4"

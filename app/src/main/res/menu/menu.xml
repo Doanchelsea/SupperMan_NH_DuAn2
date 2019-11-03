@@ -10,8 +10,9 @@
         android:title="Thực đơn" />
 
     <item
+        android:iconTint="#524E4E"
         android:id="@+id/menu_navigation_ratting"
-        android:icon="@drawable/ic_menu_notification"
+        android:icon="@drawable/foods"
         android:title="Bàn ăn" />
     <item
         android:id="@+id/menu_navigation_thong_tin"
