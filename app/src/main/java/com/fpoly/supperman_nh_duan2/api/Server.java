@@ -1,8 +1,8 @@
 package com.fpoly.supperman_nh_duan2.api;
 
 public class Server {
-    public static String localhost = "192.168.1.8";
-//    public static String localhost = "192.168.1.33";
+//    public static String localhost = "192.168.1.8";
+    public static String localhost = "192.168.1.33";
 //    public static String localhost = "172.20.10.12";
     public static String duongdanmanage = "http://"+localhost+"/supper/manage.php";
     public static String duongdananh = "http://"+localhost+"/supper/";
@@ -25,4 +25,5 @@ public class Server {
     public static String duongdanrequestnh = "http://"+localhost+"/supper/requestnh.php";
     public static String duongdanhistorydetail = "http://"+localhost+"/supper/historydetail.php";
     public static String duongdandeletethantoan = "http://"+localhost+"/supper/deletethanhtoan.php";
+    public static String duongdanupdatebanan = "http://"+localhost+"/supper/updatebanan.php";
 }

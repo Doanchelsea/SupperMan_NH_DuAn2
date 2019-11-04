@@ -11,4 +11,5 @@ public interface ThanhToanContract {
     void ShowError(int error);
     void showDelete();
     void Error();
+
 }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fpoly.supperman_nh_duan2.R;
 import com.fpoly.supperman_nh_duan2.adapter.ManageAdapter;
 import com.fpoly.supperman_nh_duan2.api.eventbus.NewEvent;
+import com.fpoly.supperman_nh_duan2.api.eventbus.RattingEvent;
 import com.fpoly.supperman_nh_duan2.base.BaseFragment;
 import com.fpoly.supperman_nh_duan2.lisenner.ManageLisenner;
 import com.fpoly.supperman_nh_duan2.model.manage.Manage;
@@ -139,6 +140,7 @@ public class OfflineFragment extends BaseFragment implements HomeContract, Manag
     @Override
     public void addThanhtoan(int id) {
         presenter.delete(id);
+        EventBus.getDefault().post(new RattingEvent());
         Alerter.create(activity)
                 .setTitle(MainActivity.NAME)
                 .setText("Món ăn đã hoàn thành")

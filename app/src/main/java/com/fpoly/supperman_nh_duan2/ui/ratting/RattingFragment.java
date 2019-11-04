@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fpoly.supperman_nh_duan2.R;
 import com.fpoly.supperman_nh_duan2.adapter.BananAdapter;
 import com.fpoly.supperman_nh_duan2.api.eventbus.NewEvent;
+import com.fpoly.supperman_nh_duan2.api.eventbus.RattingEvent;
 import com.fpoly.supperman_nh_duan2.base.BaseFragment;
 import com.fpoly.supperman_nh_duan2.lisenner.BanLisenner;
 import com.fpoly.supperman_nh_duan2.lisenner.LisennerDelete;
@@ -21,6 +22,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jakewharton.rxbinding3.view.RxView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +43,28 @@ public class RattingFragment extends BaseFragment implements RattingContract, Li
     LinearLayoutManager manager = new GridLayoutManager(activity,2);
     BananAdapter bananAdapter;
     RattingPresenter presenter;
+    boolean isload = false;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+        if (isload == true){
+            presenter.getData(list);
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+        isload = true;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(RattingEvent rattingEvent){
+        presenter.getData(list);
+    }
 
     public static RattingFragment newInstance() {
         Bundle args = new Bundle();

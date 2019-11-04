@@ -112,7 +112,6 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
             onBackPressed();
             finish();
         }));
-
         presenter.getData(thanhToans1,ban);
     }
 
@@ -184,6 +183,7 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
 
     @Override
     public void Error() {
+
         tv_price_thanh_toan.setText("0 VNĐ");
         isOnClick = false;
         recy_thanh_toan.setVisibility(View.GONE);

@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_navigation_home"
-        android:icon="@drawable/ic_menu_home"
+        android:icon="@drawable/ic_menu_history"
         android:title="Quản lý" />
     <item
         android:id="@+id/menu_navigation_menu"
-        android:icon="@drawable/ic_menu_history"
+        android:icon="@drawable/iconthucdon"
         android:title="Thực đơn" />
 
     <item
         android:iconTint="#524E4E"
         android:id="@+id/menu_navigation_ratting"
-        android:icon="@drawable/foods"
+        android:icon="@drawable/icbanan"
         android:title="Bàn ăn" />
     <item
         android:id="@+id/menu_navigation_thong_tin"

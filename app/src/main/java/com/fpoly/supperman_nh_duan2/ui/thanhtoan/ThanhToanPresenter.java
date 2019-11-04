@@ -71,7 +71,7 @@ public class ThanhToanPresenter  {
                 }
 
             }else {
-                thanhToanContract.Error();
+                updatebanan(ban);
             }
         },error -> {
             thanhToanContract.ShowError(R.string.error);
@@ -126,6 +126,24 @@ public class ThanhToanPresenter  {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String,String> hashMap = new HashMap<>();
                 hashMap.put("id",String.valueOf(id));
+                return hashMap;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void updatebanan(int ban){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest  = new StringRequest(Request.Method.POST,Server.duongdanupdatebanan,response -> {
+            thanhToanContract.Error();
+        },error -> {
+            thanhToanContract.ShowError(R.string.error);
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String,String> hashMap = new HashMap<>();
+                hashMap.put("banan",String.valueOf(ban));
+                hashMap.put("idnhahang",MainActivity.ID);
                 return hashMap;
             }
         };

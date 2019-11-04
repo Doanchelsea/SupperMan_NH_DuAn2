@@ -4,11 +4,21 @@ public class Banan {
     int id;
     int soban;
     int idnhahang;
+    String trangthai;
 
-    public Banan(int id, int soban, int idnhahang) {
+    public Banan(int id, int soban, int idnhahang, String trangthai) {
         this.id = id;
         this.soban = soban;
         this.idnhahang = idnhahang;
+        this.trangthai = trangthai;
+    }
+
+    public String getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(String trangthai) {
+        this.trangthai = trangthai;
     }
 
     public int getId() {

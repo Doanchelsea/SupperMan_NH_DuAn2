@@ -89,7 +89,6 @@ public class ManageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 .dontTransform()
                 .dontAnimate()
                 .into(viewHolder.imgManage);
-
     }
 
     @Override

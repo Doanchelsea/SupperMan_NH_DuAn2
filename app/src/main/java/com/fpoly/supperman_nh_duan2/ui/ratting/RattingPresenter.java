@@ -36,6 +36,7 @@ public class RattingPresenter {
                     int id;
                     int soban;
                     int idnhahang;
+                    String trangthai;
                     if (response != null && response.length() != 2) {
                         banans.clear();
                         try {
@@ -45,7 +46,8 @@ public class RattingPresenter {
                                 id = jsonObject.getInt("id");
                                 soban = jsonObject.getInt("soban");
                                 idnhahang = jsonObject.getInt("idnhahang");
-                                banans.add(new Banan(id,soban,idnhahang));
+                                trangthai = jsonObject.getString("trangthai");
+                                banans.add(new Banan(id,soban,idnhahang,trangthai));
                             }
                             rattingContract.show(banans);
                         } catch (JSONException e) {
@@ -161,6 +163,7 @@ public class RattingPresenter {
                 HashMap<String,String> hashMap = new HashMap<>();
                 hashMap.put("soban",""+(soban+1));
                 hashMap.put("idnhahang", MainActivity.ID);
+                hashMap.put("trangthai", "true");
                 return hashMap;
             }
         };

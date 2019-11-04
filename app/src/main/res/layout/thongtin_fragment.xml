@@ -128,7 +128,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/account_tv_bill"
                 app:layout_constraintEnd_toEndOf="@+id/account_tv_bill"
                 app:layout_constraintStart_toStartOf="@+id/account_tv_bill"
-                android:src="@drawable/ic_image_place_holder" />
+                android:src="@drawable/iconlichsu" />
 
             <TextView
                 android:id="@+id/account_tv_bill"

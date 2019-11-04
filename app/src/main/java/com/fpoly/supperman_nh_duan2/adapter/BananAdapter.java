@@ -43,6 +43,11 @@ public class BananAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         viewHolder.itemView.setOnClickListener(view -> {
             banLisenner.onBan(banan.getSoban());
         });
+        if (banan.getTrangthai().equals("true")){
+            viewHolder.itemView.setBackgroundResource(R.drawable.bg_dialog);
+        }else {
+            viewHolder.itemView.setBackgroundResource(R.drawable.bg_ban_an_do);
+        }
     }
 
     @Override
