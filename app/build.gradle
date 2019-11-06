@@ -74,4 +74,8 @@ dependencies {
     implementation "com.daimajia.swipelayout:library:1.2.0@aar"
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    implementation 'com.daimajia.easing:library:2.1@aar'
+
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
 }

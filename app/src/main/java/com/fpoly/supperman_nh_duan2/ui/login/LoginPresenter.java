@@ -47,6 +47,7 @@ public class LoginPresenter {
                                 name = jsonObject.getString("names");
                                 lat = jsonObject.getString("lat");
                                 lng = jsonObject.getString("lng");
+
                                 if (phone.equals(phones)){
                                     loginContract.ShowSuccer();
                                     dataManager.updateUserInfoSharedPreference(String.valueOf(id),name,image,true);
