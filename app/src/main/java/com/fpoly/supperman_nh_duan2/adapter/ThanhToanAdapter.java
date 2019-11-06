@@ -23,6 +23,10 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
+import com.daimajia.swipe.implments.SwipeItemRecyclerMangerImpl;
+import com.daimajia.swipe.interfaces.SwipeAdapterInterface;
+import com.daimajia.swipe.interfaces.SwipeItemMangerInterface;
+import com.daimajia.swipe.util.Attributes;
 import com.fpoly.supperman_nh_duan2.R;
 import com.fpoly.supperman_nh_duan2.api.Server;
 import com.fpoly.supperman_nh_duan2.lisenner.ThanhToanLisenner;
@@ -34,16 +38,18 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
-public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements SwipeAdapterInterface, SwipeItemMangerInterface {
 
     Context context;
     List<ThanhToan> list;
     ThanhToanLisenner thanhToanLisenner;
+    private SwipeItemRecyclerMangerImpl itemRecyclerManger;
 
     public ThanhToanAdapter(Context context, List<ThanhToan> list, ThanhToanLisenner thanhToanLisenner) {
         this.context = context;
         this.list = list;
         this.thanhToanLisenner = thanhToanLisenner;
+        itemRecyclerManger = new SwipeItemRecyclerMangerImpl(this);
     }
 
     @NonNull
@@ -116,6 +122,9 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 .dontTransform()
                 .dontAnimate()
                 .into(viewHodel.imageView);
+
+        itemRecyclerManger.bindView(holder.itemView,holder.getAdapterPosition());
+
     }
 
 
@@ -123,6 +132,61 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    @Override
+    public int getSwipeLayoutResourceId(int position) {
+        return R.id.swipeLayout;
+    }
+
+    @Override
+    public void openItem(int position) {
+
+    }
+
+    @Override
+    public void closeItem(int position) {
+
+    }
+
+    @Override
+    public void closeAllExcept(SwipeLayout layout) {
+
+    }
+
+    @Override
+    public void closeAllItems() {
+
+    }
+
+    @Override
+    public List<Integer> getOpenItems() {
+        return null;
+    }
+
+    @Override
+    public List<SwipeLayout> getOpenLayouts() {
+        return null;
+    }
+
+    @Override
+    public void removeShownLayouts(SwipeLayout layout) {
+
+    }
+
+    @Override
+    public boolean isOpen(int position) {
+        return false;
+    }
+
+    @Override
+    public Attributes.Mode getMode() {
+        return null;
+    }
+
+    @Override
+    public void setMode(Attributes.Mode mode) {
+
     }
 
     public class ViewHodel extends RecyclerView.ViewHolder {
