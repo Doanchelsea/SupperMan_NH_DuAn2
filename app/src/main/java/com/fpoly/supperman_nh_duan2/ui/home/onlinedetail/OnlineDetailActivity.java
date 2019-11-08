@@ -4,6 +4,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -72,12 +73,15 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
         registerConnectable(this);
         registerDisconnectable(this);
         mshimmerFrameLayout.startShimmer();
+        isOnClick = true;
+        detailPresenter.getUser(manage.getIduser());
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mshimmerFrameLayout.stopShimmer();
+        isOnClick = false;
     }
 
     @Override
@@ -114,9 +118,7 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
                     finish();
                 }));
 
-
         manage = getIntent().getParcelableExtra("MANAGE");
-        detailPresenter.getUser(manage.getIduser());
         addDisposable(RxView.clicks(btn_huy_dat)
                 .throttleFirst(2, TimeUnit.SECONDS)
                 .compose(bindToLifecycle())

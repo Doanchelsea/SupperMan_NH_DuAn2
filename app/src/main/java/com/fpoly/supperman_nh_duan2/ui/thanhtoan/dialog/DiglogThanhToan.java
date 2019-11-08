@@ -24,6 +24,10 @@ public class DiglogThanhToan extends BaseDiglog {
     Button buttonCancel;
     @BindView(R.id.btn_xac_nhan_thanh_toan)
     Button buttonXacnhan;
+    @BindView(R.id.tv_text_thanh_toan_full)
+    TextView tv_text_thanh_toan_full;
+    @BindView(R.id.tv_text_thanh_toan_dis)
+    TextView tv_text_thanh_toan_dis;
     private ThanhToanLisenner listener;
 
 
@@ -37,11 +41,13 @@ public class DiglogThanhToan extends BaseDiglog {
         listener = null;
         super.onDestroyView();
     }
-    public static DiglogThanhToan getInstance(double price,int iduser,int ban){
+    public static DiglogThanhToan getInstance(double price,int iduser,int ban, double tong,double dir){
         Bundle args = new Bundle();
         args.putDouble("PRICE",price);
         args.putInt("ID",iduser);
         args.putInt("BAN",ban);
+        args.putDouble("PRICEFULL",tong);
+        args.putDouble("DIR",dir);
         DiglogThanhToan fragment = new DiglogThanhToan();
         fragment.setArguments(args);
         return fragment;
@@ -63,6 +69,11 @@ public class DiglogThanhToan extends BaseDiglog {
         double pirce = getArguments().getDouble("PRICE",0);
         int iduser = getArguments().getInt("ID",0);
         int ban = getArguments().getInt("BAN",0);
+        double tong = getArguments().getDouble("PRICEFULL",0);
+        double dir = getArguments().getDouble("DIR",0);
+
+        tv_text_thanh_toan_full.setText("Tổng số tiền là : " + FormatUtils.convertEstimatedPrice(tong)+ " VNĐ");
+        tv_text_thanh_toan_dis.setText("Số tiền giảm giá là  : " + FormatUtils.convertEstimatedPrice(tong*(dir/100))+ " VNĐ");
         tv_text_thanh_toan.setText("Số tiền thanh toán là : " + FormatUtils.convertEstimatedPrice(pirce)+ " VNĐ");
         addDisposable(RxView.clicks(buttonCancel)
                 .throttleFirst(2, TimeUnit.SECONDS)

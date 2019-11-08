@@ -68,7 +68,6 @@ public class ThanhToanLSAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
     public class ViewHodel extends RecyclerView.ViewHolder {
         public TextView tvName,tvPrice,tvSoluong;
-        public ImageView imgXoa;
         public RoundedImageView imageView;
         public ViewHodel(@NonNull View itemView) {
             super(itemView);

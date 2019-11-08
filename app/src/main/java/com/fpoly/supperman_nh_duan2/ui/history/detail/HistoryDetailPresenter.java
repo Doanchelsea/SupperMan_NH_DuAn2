@@ -88,8 +88,8 @@ public class HistoryDetailPresenter {
                         soluong = jsonObject.getInt("soluong");
                         iduser = jsonObject.getInt("iduser");
                         thanhToans.add(new ThanhToan(id,namemonan,images,price,banan,discounts,soluong,iduser));
-                        contract.ShowList(thanhToans);
                     }
+                    contract.ShowList(thanhToans);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

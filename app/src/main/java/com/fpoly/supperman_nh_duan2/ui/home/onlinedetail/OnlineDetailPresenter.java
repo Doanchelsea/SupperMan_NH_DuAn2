@@ -124,6 +124,7 @@ public class OnlineDetailPresenter {
                 hashMap.put("price",""+manage.getPrice());
                 hashMap.put("banan",""+ban);
                 hashMap.put("discounts","15");
+                hashMap.put("soluong",manage.getSoluong());
                 hashMap.put("iduser",""+manage.getIduser());
                 hashMap.put("idtrangthai","0");
                 hashMap.put("idnhahang",MainActivity.ID);

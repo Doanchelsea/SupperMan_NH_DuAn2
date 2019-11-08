@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -145,7 +146,7 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
         addDisposable(RxView.clicks(tv_thanh_toan).subscribe(
                 unit -> {
                     if (isOnClick == true) {
-                        DiglogThanhToan dialog = DiglogThanhToan.getInstance(tong1, iduser, ban);
+                        DiglogThanhToan dialog = DiglogThanhToan.getInstance(tong1, iduser, ban,tong,dir);
                         dialog.show(getSupportFragmentManager(), dialog.getTag());
                     }
                 }
@@ -183,7 +184,6 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
 
     @Override
     public void Error() {
-
         tv_price_thanh_toan.setText("0 VNĐ");
         isOnClick = false;
         recy_thanh_toan.setVisibility(View.GONE);

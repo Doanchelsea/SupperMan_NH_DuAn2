@@ -8,8 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 
 public class ViewPage extends FragmentPagerAdapter {
-    String IDNH,IMGNH;
-    Bundle bundle;
 
     public ViewPage(FragmentManager fm) {
         super(fm);

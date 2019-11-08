@@ -7,19 +7,58 @@
     android:background="@drawable/bg_dialog">
 
     <TextView
+        android:paddingRight="@dimen/space_10"
+        android:paddingLeft="@dimen/space_10"
+        android:paddingTop="@dimen/space_16"
+        android:paddingBottom="@dimen/space_10"
+        app:layout_constraintWidth_percent="0.8"
         android:maxLines="1"
         android:lines="1"
-        android:id="@+id/tv_text_thanh_toan"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_text_thanh_toan_full"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space_16"
-        android:text="Số tiền thanh toán là : 2.000.000 VNĐ "
+        android:text="Tổng  hóa đơn là : 2.000.000 VNĐ "
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="@dimen/text_size_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        app:layout_constraintWidth_percent="0.8"
+        android:maxLines="1"
+        android:lines="1"
+        android:id="@+id/tv_text_thanh_toan_dis"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_10"
+        android:text="Số tiền giảm giá là : 2.000.000 VNĐ "
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_text_thanh_toan_full"/>
+
+    <TextView
+        android:textSize="@dimen/text_size_16"
+        app:layout_constraintWidth_percent="0.8"
+        android:maxLines="1"
+        android:lines="1"
+        android:id="@+id/tv_text_thanh_toan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Số tiền thanh toán là : 2.000.000 VNĐ"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:paddingRight="@dimen/space_10"
+        android:paddingLeft="@dimen/space_10"
+        android:paddingTop="@dimen/space_10"
+        android:paddingBottom="@dimen/space_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_text_thanh_toan_dis"/>
 
     <View
         android:id="@+id/view1"

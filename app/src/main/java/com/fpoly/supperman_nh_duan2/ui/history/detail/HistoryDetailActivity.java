@@ -41,6 +41,7 @@ public class HistoryDetailActivity extends BaseActivity implements Connectable, 
     RecyclerView re_history_detail;
     @BindView(R.id.activity_register_iv_back_history_detail)
     ImageView imgBack;
+
     private List<ThanhToan> thanhToans = new ArrayList<>();
     private ThanhToanLSAdapter thanhToanAdapter;
     private LinearLayoutManager manager = new LinearLayoutManager(this);

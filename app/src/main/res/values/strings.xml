@@ -20,5 +20,6 @@
     <string name="update_info_label_name_display">Tên hiển thị*:</string>
     <string name="error_validate">Không được nhập ký tự đặc biệt</string>
     <string name="RestaurantHouse">Restaurant House</string>
+    <string name="error_ky_tu">Không được nhập ký tự đặc biệt</string>
 
 </resources>

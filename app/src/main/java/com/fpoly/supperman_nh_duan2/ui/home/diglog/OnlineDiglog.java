@@ -2,6 +2,7 @@ package com.fpoly.supperman_nh_duan2.ui.home.diglog;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;

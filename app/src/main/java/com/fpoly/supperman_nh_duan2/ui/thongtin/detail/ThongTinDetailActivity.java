@@ -124,9 +124,9 @@ public class ThongTinDetailActivity extends BaseActivity implements Connectable,
                 .subscribe(unit -> {
                     String name = edName.getText().toString().trim();
                     if (StringUtils.isEmpty(name)){
-                        Toasty.warning(this,"Không được để trống").show();
+                        Toasty.warning(this,R.string.error_null).show();
                     }else if (!ValidateUtils.isVaidFullName(name)){
-
+                        Toasty.warning(this,R.string.error_ky_tu).show();
                     } else {
                         ShowLoading(true);
                         if (bitmap != null){

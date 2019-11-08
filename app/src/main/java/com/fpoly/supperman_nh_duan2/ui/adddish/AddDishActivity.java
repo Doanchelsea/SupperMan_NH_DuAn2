@@ -142,8 +142,6 @@ public class AddDishActivity extends BaseActivity implements Connectable, Discon
                         Toasty.warning(this,R.string.error_validate).show();
                     } else if (StringUtils.isEmpty(description)){
                         Toasty.warning(this,R.string.error_null).show();
-                    }else if (!ValidateUtils.isVaidFullName(name)){
-                        Toasty.warning(this,R.string.error_validate).show();
                     } else {
                         if (radioBuaTrua.isChecked()){
                             dates = "lunch";

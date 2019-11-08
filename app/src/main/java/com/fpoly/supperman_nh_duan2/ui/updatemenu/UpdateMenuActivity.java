@@ -149,8 +149,6 @@ public class UpdateMenuActivity extends BaseActivity implements Connectable, Dis
                 Toasty.warning(this,R.string.error_validate).show();
             }else if (StringUtils.isEmpty(description)){
                 Toasty.warning(this,R.string.error_null).show();
-            }else if (!ValidateUtils.isVaidFullName(description)){
-                Toasty.warning(this,R.string.error_validate).show();
             }else {
 
                 if (radioBuaTrua_update.isChecked()) {
