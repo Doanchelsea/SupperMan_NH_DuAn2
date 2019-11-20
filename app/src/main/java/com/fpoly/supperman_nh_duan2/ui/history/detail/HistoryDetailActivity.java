@@ -12,14 +12,20 @@ import android.widget.TextView;
 import com.fpoly.supperman_nh_duan2.R;
 import com.fpoly.supperman_nh_duan2.adapter.ThanhToanLSAdapter;
 import com.fpoly.supperman_nh_duan2.api.Server;
+import com.fpoly.supperman_nh_duan2.api.eventbus.MainEvent;
 import com.fpoly.supperman_nh_duan2.base.BaseActivity;
 import com.fpoly.supperman_nh_duan2.model.ThanhToan;
+import com.fpoly.supperman_nh_duan2.ui.login.LoginActivity;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,10 +67,7 @@ public class HistoryDetailActivity extends BaseActivity implements Connectable, 
         registerDisconnectable(this);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
+
 
     @Override
     protected int getLayoutId() {
@@ -140,9 +143,7 @@ public class HistoryDetailActivity extends BaseActivity implements Connectable, 
         re_history_detail.setLayoutManager(manager);
         re_history_detail.setAdapter(thanhToanAdapter);
 
-
     }
-
     @Override
     public void showError(int error) {
         Toasty.error(this,error).show();

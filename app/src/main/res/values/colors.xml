@@ -17,6 +17,7 @@
     <color name="hotline_color_button_text">#3F51B5</color>
     <color name="gray">#D8D8D8</color>
     <color name="blue">#27D6F4</color>
+    <color name="blue100">#63B8FF</color>
     <color name="colorButtonOrangeClick">#FF5555</color>
     <color name="colorButtonOrange">#fe9c43</color>
 
@@ -25,6 +26,14 @@
     <color name="confirm_color_button_text">#3F51B5</color>
 
     <color name="gray_50">#f9f9f9</color>
+    <color name="gray_100">#F5F5F5</color>
+    <color name="gray_200">#eaeef1</color>
+    <color name="gray_300">#d6d6d6</color>
+    <color name="gray_400">#857c8a92</color>
+    <color name="gray_500">#ababab</color>
+    <color name="gray_650">#7d7d7d</color>
+    <color name="gray_700">#5a5a5a</color>
+    <color name="gray_800">#424242</color>
 
     <color name="bg_color_alert_dialog">#4CAF50</color>
     <color name="update_info_color_text_save">#4CAF50</color>

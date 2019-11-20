@@ -13,36 +13,51 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.fpoly.supperman_nh_duan2.ui.menu.xemthem.XemThemActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name="com.fpoly.supperman_nh_duan2.ui.history.detail.HistoryDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name="com.fpoly.supperman_nh_duan2.ui.thongtin.detail.ThongTinDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name="com.fpoly.supperman_nh_duan2.ui.history.HistoryActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name="com.fpoly.supperman_nh_duan2.ui.updatemenu.UpdateMenuActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name="com.fpoly.supperman_nh_duan2.ui.thanhtoan.ThanhToanActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name="com.fpoly.supperman_nh_duan2.ui.home.onlinedetail.OnlineDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name="com.fpoly.supperman_nh_duan2.ui.menu.detail.MenuDetailActivity"
+        <service android:name=".firebase.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
+        <activity
+            android:name=".ui.menu.xemthem.XemThemActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fpoly.supperman_nh_duan2.ui.login.LoginActivity"
+            android:name=".ui.history.detail.HistoryDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fpoly.supperman_nh_duan2.ui.adddish.AddDishActivity"
+            android:name=".ui.thongtin.detail.ThongTinDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fpoly.supperman_nh_duan2.ui.dish.DishActivity"
+            android:name=".ui.history.HistoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fpoly.supperman_nh_duan2.ui.main.MainActivity"
+            android:name=".ui.updatemenu.UpdateMenuActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.fpoly.supperman_nh_duan2.ui.splash.SplashActivity"
+            android:name=".ui.thanhtoan.ThanhToanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.onlinedetail.OnlineDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.menu.detail.MenuDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.adddish.AddDishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.dish.DishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

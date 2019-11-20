@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import com.fpoly.supperman_nh_duan2.R;
 import com.fpoly.supperman_nh_duan2.api.Server;
+import com.fpoly.supperman_nh_duan2.api.eventbus.CancelEvent;
 import com.fpoly.supperman_nh_duan2.base.BaseActivity;
 import com.fpoly.supperman_nh_duan2.lisenner.AddOnlineLisenner;
 import com.fpoly.supperman_nh_duan2.lisenner.ConfimLisenner;
+import com.fpoly.supperman_nh_duan2.model.LoadingDialog;
 import com.fpoly.supperman_nh_duan2.model.manage.Manage;
 import com.fpoly.supperman_nh_duan2.ui.home.diglog.ConfirmDialog;
 import com.fpoly.supperman_nh_duan2.ui.home.diglog.HotlineDialog;
@@ -28,6 +30,10 @@ import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
 import com.tapadoo.alerter.Alerter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.concurrent.TimeUnit;
 
@@ -74,7 +80,12 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
         registerDisconnectable(this);
         mshimmerFrameLayout.startShimmer();
         isOnClick = true;
-        detailPresenter.getUser(manage.getIduser());
+        manage = getIntent().getParcelableExtra("MANAGE");
+        detailPresenter.getUser(manage);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
+
     }
 
     @Override
@@ -82,6 +93,14 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
         super.onPause();
         mshimmerFrameLayout.stopShimmer();
         isOnClick = false;
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(CancelEvent cancelEvent){
+        if (cancelEvent.getId().equals(String.valueOf(manage.getId()))){
+            finish();
+        }
     }
 
     @Override
@@ -118,13 +137,12 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
                     finish();
                 }));
 
-        manage = getIntent().getParcelableExtra("MANAGE");
         addDisposable(RxView.clicks(btn_huy_dat)
                 .throttleFirst(2, TimeUnit.SECONDS)
                 .compose(bindToLifecycle())
                 .subscribe(unit -> {
                     if (isOnClick == true){
-                        ConfirmDialog dialog = ConfirmDialog.newInstance(manage.getId());
+                        ConfirmDialog dialog = ConfirmDialog.newInstance(manage);
                         dialog.show(getSupportFragmentManager(), dialog.getTag());
                     }
         }));
@@ -133,7 +151,8 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
                 .compose(bindToLifecycle())
                 .subscribe(unit -> {
                     if (isOnClick == true){
-                        detailPresenter.soban();
+                        OnlineDiglog dialog = OnlineDiglog.newInstance(manage);
+                        dialog.show(getSupportFragmentManager(), dialog.getTag());
                     }
         }));
     }
@@ -176,18 +195,18 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
 
     @Override
     public void showDelete() {
+        showLoading(false);
         finish();
     }
 
     @Override
     public void showSoban(int ban) {
-        OnlineDiglog dialog = OnlineDiglog.newInstance(manage,ban);
+        OnlineDiglog dialog = OnlineDiglog.newInstance(manage);
         dialog.show(getSupportFragmentManager(), dialog.getTag());
     }
 
     @Override
     public void showthanhtoan(int id) {
-        detailPresenter.delete(id);
         Alerter.create(this)
                 .setTitle(MainActivity.NAME)
                 .setText("Xác nhận khách hàng thành công")
@@ -206,17 +225,28 @@ public class OnlineDetailActivity extends BaseActivity implements Connectable, D
     @Override
     public void ShowError(int error) {
         Toasty.error(context,error).show();
+        showLoading(false);
+    }
+
+    @Override
+    public void showLoading(boolean show) {
+        if (show){
+            LoadingDialog.getInstance().showLoading(this);
+        }else {
+            LoadingDialog.getInstance().hideLoading();
+        }
     }
 
 
     @Override
-    public void onClick(int id) {
-        detailPresenter.delete(id);
+    public void onClick(Manage manage) {
+        showLoading(true);
+        detailPresenter.delete(manage);
     }
 
 
     @Override
-    public void onclick(Manage manage, int ban) {
-        detailPresenter.thanhtoan(manage,ban);
+    public void onclick(Manage manage,int banan) {
+        detailPresenter.thanhtoan(manage,banan);
     }
 }

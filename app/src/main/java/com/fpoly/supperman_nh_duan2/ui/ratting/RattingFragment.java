@@ -159,7 +159,7 @@ public class RattingFragment extends BaseFragment implements RattingContract, Li
 
     @Override
     public void onClick(int ban) {
-        presenter.xoaban(ban);
+        presenter.xoaban(ban)   ;
     }
 
     @Override

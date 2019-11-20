@@ -10,6 +10,7 @@ import com.fpoly.supperman_nh_duan2.model.local.DataManager;
 import com.fpoly.supperman_nh_duan2.ui.login.LoginActivity;
 import com.fpoly.supperman_nh_duan2.ui.main.MainActivity;
 import com.fpoly.supperman_nh_duan2.untils.StringUtils;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
@@ -18,16 +19,17 @@ import com.novoda.merlin.NetworkStatus;
 
 import java.util.concurrent.TimeUnit;
 
+import es.dmoral.toasty.Toasty;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class SplashActivity extends BaseActivity implements Connectable, Disconnectable, Bindable {
+public class SplashActivity extends BaseActivity implements Connectable, Disconnectable, Bindable, SplashContract {
 
     private SharedPreferences mPrefs;
     private AppPreferencesHelper appPreferencesHelper;
     private DataManager dataManager;
-
+    private SplashPresenter presenter;
     @Override
     protected void onResume() {
         super.onResume();
@@ -52,7 +54,7 @@ public class SplashActivity extends BaseActivity implements Connectable, Disconn
 
     @Override
     protected void initData() {
-
+        presenter = new SplashPresenter(this,this);
     }
 
     @Override
@@ -74,15 +76,11 @@ public class SplashActivity extends BaseActivity implements Connectable, Disconn
                         openLoginScreen();
                     }));
         }else {
-            addDisposable(Observable.just(0).delay(500, TimeUnit.MILLISECONDS)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(aVoid -> {
-                        openMainScreen();
-                    }));
+            presenter.getData(dataManager.getID());
         }
-
     }
+
+
 
 
     @Override
@@ -105,5 +103,29 @@ public class SplashActivity extends BaseActivity implements Connectable, Disconn
     }
     private void openMainScreen() {
         MainActivity.startActivity(this);
+    }
+
+    @Override
+    public void showerror(int error) {
+        Toasty.error(this,error).show();
+        openLoginScreen();
+    }
+
+    @Override
+    public void showSucces(String token) {
+
+        if (!token.equals(dataManager.token())){
+            openLoginScreen();
+            dataManager.clearAllUserInfo();
+            Toasty.error(this,R.string.error_android).show();
+            return;
+        }
+
+        addDisposable(Observable.just(0).delay(500, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aVoid -> {
+                    openMainScreen();
+                }));
     }
 }

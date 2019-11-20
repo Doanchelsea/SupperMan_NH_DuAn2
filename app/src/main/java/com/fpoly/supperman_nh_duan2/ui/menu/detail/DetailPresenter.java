@@ -39,20 +39,12 @@ public class DetailPresenter {
         String time = FormatUtils.convertEstimatedDay(calendar.getTime())
                 + "/"+FormatUtils.convertEstimatedMonth(calendar.getTime());
         List<String> list = new ArrayList<>();
-        if (idmonan == 1 ){
-            list.add("2");
-            list.add("3");
-            list.add("4");
-            list.add("5");
-            list.add("6");
-        }else {
             list.add("1");
             list.add("2");
             list.add("3");
             list.add("4");
             list.add("5");
             list.add("6");
-        }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(context,android.R.layout.simple_spinner_item,list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spinner.setAdapter(arrayAdapter);
@@ -121,13 +113,8 @@ public class DetailPresenter {
                 hashMap.put("statusd","offline");
                 hashMap.put("times",time);
                 hashMap.put("discounts",""+0);
-                if (idSL == 1){
-                    hashMap.put("soluong",""+1);
-                    hashMap.put("songuoi",""+songuoi);
-                }else {
-                    hashMap.put("soluong",""+songuoi);
-                    hashMap.put("songuoi",""+1);
-                }
+                hashMap.put("soluong",""+songuoi);
+                hashMap.put("songuoi",""+1);
                 hashMap.put("tables",soban);
                 hashMap.put("idnhahang",MainActivity.ID);
                 hashMap.put("iduser","0");

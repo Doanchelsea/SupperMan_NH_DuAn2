@@ -10,4 +10,7 @@ public interface OnlineDetailContract {
     void showthanhtoan(int id);
 
     void ShowError(int error);
+
+    void showLoading(boolean show);
+
 }

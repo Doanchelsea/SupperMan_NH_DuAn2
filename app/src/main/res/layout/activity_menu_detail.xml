@@ -143,6 +143,7 @@
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/tv_dat_mon"
         android:gravity="center"

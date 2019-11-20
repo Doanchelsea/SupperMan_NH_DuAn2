@@ -116,11 +116,8 @@ public class MenuDetailActivity extends BaseActivity implements Connectable, Dis
         }
         tv_name_mon_an.setText(menu.getNames());
         tv_chi_tiet_mon_an.setText(menu.getDescriptions());
-        if (menu.getIdmonan() == 1){
-            tv_so_luong.setText("Số người");
-        }else {
-            tv_so_luong.setText("Số lượng");
-        }
+        tv_so_luong.setText("Số lượng");
+
 
 
         addDisposable(RxView.clicks(imgback_dat_mon)
@@ -183,11 +180,8 @@ public class MenuDetailActivity extends BaseActivity implements Connectable, Dis
     @Override
     public void showSpiner(String spiner,String time) {
         spinerSL = spiner;
-        if (menu.getIdmonan() == 1){
-            tv_date.setText("Số người : "+spiner+" - Ngày "+time);
-        }else {
-            tv_date.setText("Số lượng : "+spiner+" - Ngày "+time);
-        }
+        tv_date.setText("Số lượng : "+spiner+" - Ngày "+time);
+
     }
 
     @Override

@@ -9,6 +9,7 @@ public class AppPreferencesHelper implements PreferencesHelper {
     private static final String NAME = "NAME";
     private static final String IMAGE = "IMAGE";
     private static final String LOGGED = "LOGGED";
+    private static final String TOKEN = "TOKEN";
 
 
     private SharedPreferences mPrefs;
@@ -17,6 +18,16 @@ public class AppPreferencesHelper implements PreferencesHelper {
     public AppPreferencesHelper(SharedPreferences mPrefs, Context context) {
         this.mPrefs = mPrefs;
         this.context = context;
+    }
+
+    @Override
+    public String token() {
+        return mPrefs.getString(TOKEN,"");
+    }
+
+    @Override
+    public void setToken(String token) {
+        mPrefs.edit().putString(TOKEN,token).apply();
     }
 
     @Override

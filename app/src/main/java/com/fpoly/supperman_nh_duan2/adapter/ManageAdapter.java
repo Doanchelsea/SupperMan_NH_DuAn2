@@ -65,21 +65,14 @@ public class ManageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             viewHolder.itemView.setOnClickListener(view -> {
                 onlineLisenner.Onclick(manage);
             });
-            if (manage.getIdname() == 1){
                 viewHolder.tvStatus.setText("Online " +"- số người : "+manage.getSonguoi());
-            }else {
-                viewHolder.tvStatus.setText("Online " +"- số lượng : "+manage.getSoluong());
-            }
         }
         if (manage.getStatus().equals("offline")){
             viewHolder.itemView.setOnClickListener(view -> {
                 manageLisenner.onClick(manage);
             });
-            if (manage.getIdname() == 1){
-                viewHolder.tvStatus.setText("Bàn : "+manage.getTables() +" - số người : "+manage.getSonguoi());
-            }else {
-                viewHolder.tvStatus.setText("Bàn : "+manage.getTables() +" - số lượng "+manage.getSoluong());
-            }
+            viewHolder.tvStatus.setText("Bàn : "+manage.getTables() +" - số lượng : "+manage.getSoluong());
+
         }
         Glide.with(context)
                 .load(Server.duongdananh+manage.getImage())

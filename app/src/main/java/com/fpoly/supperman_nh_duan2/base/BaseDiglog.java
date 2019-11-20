@@ -4,13 +4,18 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.LinearLayout;
+import android.widget.ViewAnimator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentActivity;
 
 
@@ -34,6 +39,7 @@ public abstract class BaseDiglog extends RxDialogFragment {
         super.onStart();
         initDialog();
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -81,6 +87,18 @@ public abstract class BaseDiglog extends RxDialogFragment {
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
+    protected void setFullScreenDialog(Window window) {
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.MATCH_PARENT;
+        window.setLayout(width, height);
+
+    }
+
+    protected void setFullWidthDialog(Window window) {
+        int width = ViewGroup.LayoutParams.MATCH_PARENT;
+        int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        window.setLayout(width, height);
+    }
 
     protected abstract int getLayoutId();
 
@@ -93,11 +111,11 @@ public abstract class BaseDiglog extends RxDialogFragment {
     protected abstract void initDatas();
 
     private FragmentActivity getSupportActivity() {
-        return  super.getActivity();
+        return super.getActivity();
     }
     private void setupCancelableDialog() {
-        setCancelable(true);
-        getDialog().setCanceledOnTouchOutside(true);
+        setCancelable(false);
+        getDialog().setCanceledOnTouchOutside(false);
     }
 
     protected void addDisposable(Disposable disposable) {

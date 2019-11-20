@@ -63,7 +63,6 @@ public class LoginActivity extends BaseActivity implements Connectable, Disconne
                 .withBindableCallbacks()
                 .build(this);
     }
-
     @Override
     protected void initData() {
         mPrefs = context.getSharedPreferences("", Context.MODE_PRIVATE);
@@ -135,5 +134,10 @@ public class LoginActivity extends BaseActivity implements Connectable, Disconne
     public void ShowError(int error) {
         showLoading(false);
         Toasty.error(this,error).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
     }
 }

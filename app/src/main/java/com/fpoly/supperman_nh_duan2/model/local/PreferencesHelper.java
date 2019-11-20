@@ -2,6 +2,10 @@ package com.fpoly.supperman_nh_duan2.model.local;
 
 public interface PreferencesHelper {
 
+    String token();
+
+    void setToken(String token);
+
     void setLoggedIn(boolean isLoggedIn);
 
     boolean IsLoggedIn();

@@ -81,6 +81,7 @@ public class HistoryActivity extends BaseActivity implements Connectable, Discon
     protected void addEvents() {
         initAdapter();
         presenter.getData(histories,page,space);
+
         recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(manager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {

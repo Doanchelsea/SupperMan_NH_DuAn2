@@ -32,7 +32,6 @@ public class HomePresenter {
     }
 
     public void getData(List<Manage> list,String sta){
-
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.duongdanmanage,
                 response -> {

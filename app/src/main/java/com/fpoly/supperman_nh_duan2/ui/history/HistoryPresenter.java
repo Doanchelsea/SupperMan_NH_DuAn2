@@ -53,6 +53,7 @@ public class HistoryPresenter {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
             }else {
                 historyContract.showList(histories,false);
             }

@@ -8,6 +8,7 @@ import android.widget.Button;
 import com.fpoly.supperman_nh_duan2.R;
 import com.fpoly.supperman_nh_duan2.base.BaseDiglog;
 import com.fpoly.supperman_nh_duan2.lisenner.ConfimLisenner;
+import com.fpoly.supperman_nh_duan2.model.manage.Manage;
 import com.jakewharton.rxbinding3.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -34,9 +35,9 @@ public class ConfirmDialog extends BaseDiglog {
         super.onDestroyView();
     }
 
-    public static ConfirmDialog newInstance(int id) {
+    public static ConfirmDialog newInstance(Manage manage) {
         Bundle args = new Bundle();
-        args.putInt("ID",id);
+        args.putParcelable("MANAGE",manage);
         ConfirmDialog fragment = new ConfirmDialog();
         fragment.setArguments(args);
         return fragment;
@@ -77,8 +78,8 @@ public class ConfirmDialog extends BaseDiglog {
                 .throttleFirst(2,TimeUnit.SECONDS)
                 .compose(bindToLifecycle())
                 .subscribe(aVoid -> {
-                  int id =   getArguments().getInt("ID",0);
-                    listener.onClick(id);
+                  Manage manage =   getArguments().getParcelable("MANAGE");
+                    listener.onClick(manage);
                     hideDialog();
                 }));
     }

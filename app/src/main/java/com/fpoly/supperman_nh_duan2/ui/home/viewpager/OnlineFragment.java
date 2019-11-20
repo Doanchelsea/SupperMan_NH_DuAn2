@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fpoly.supperman_nh_duan2.R;
 import com.fpoly.supperman_nh_duan2.adapter.ManageAdapter;
+import com.fpoly.supperman_nh_duan2.api.eventbus.CancelEvent;
+import com.fpoly.supperman_nh_duan2.api.eventbus.MainEvent;
 import com.fpoly.supperman_nh_duan2.base.BaseFragment;
 import com.fpoly.supperman_nh_duan2.lisenner.OnlineLisenner;
 import com.fpoly.supperman_nh_duan2.model.manage.Manage;
@@ -15,6 +17,11 @@ import com.fpoly.supperman_nh_duan2.ui.home.HomeContract;
 import com.fpoly.supperman_nh_duan2.ui.home.HomePresenter;
 import com.fpoly.supperman_nh_duan2.ui.home.onlinedetail.OnlineDetailActivity;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.fpoly.supperman_nh_duan2.ui.login.LoginActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +44,9 @@ public class OnlineFragment extends BaseFragment implements HomeContract, Online
     @Override
     public void onResume() {
         super.onResume();
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         if (isLoad == true){
             presenter.getData(list,"online");
         }
@@ -45,6 +55,7 @@ public class OnlineFragment extends BaseFragment implements HomeContract, Online
     @Override
     public void onPause() {
         super.onPause();
+        EventBus.getDefault().unregister(this);
         isLoad = true;
     }
 
@@ -58,6 +69,11 @@ public class OnlineFragment extends BaseFragment implements HomeContract, Online
     public void onStop() {
         super.onStop();
         mshimmerFrameLayout.stopShimmer();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onNewTripNotificationEvent(MainEvent mainEvent) {
+        presenter.getData(list,"online");
     }
 
     public static OnlineFragment newInstance() {

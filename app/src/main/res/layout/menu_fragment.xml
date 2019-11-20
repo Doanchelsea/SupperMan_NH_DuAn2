@@ -2,37 +2,47 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_100"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        app:layout_constraintTop_toTopOf="parent"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout_menu_fragment"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/toolbarMenu"
-        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_48">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Thực đơn"
-            android:textColor="@color/black"
-            android:textSize="@dimen/space_18" />
-        <ImageView
-            android:id="@+id/imgAddDish"
-            android:layout_width="@dimen/space_24"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/space_16"
-            android:layout_gravity="center_horizontal|end"
-            android:src="@drawable/ic_add" />
+        android:layout_height="wrap_content">
 
-    </androidx.appcompat.widget.Toolbar>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMenu"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_48">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Thực đơn"
+                android:textColor="@color/black"
+                android:textSize="@dimen/space_18" />
+            <ImageView
+                android:id="@+id/imgAddDish"
+                android:layout_width="@dimen/space_24"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/space_16"
+                android:layout_gravity="center_horizontal|end"
+                android:src="@drawable/ic_add" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <ScrollView
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMenu"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout_menu_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <androidx.constraintlayout.widget.ConstraintLayout

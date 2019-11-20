@@ -21,5 +21,8 @@
     <string name="error_validate">Không được nhập ký tự đặc biệt</string>
     <string name="RestaurantHouse">Restaurant House</string>
     <string name="error_ky_tu">Không được nhập ký tự đặc biệt</string>
+    <string name="error_error">Lỗi đăng nhập</string>
+    <string name="error_android">Tài khoản đăng nhập trên thiết bị khác</string>
+    <string name="error_null_ban_an">Bạn chưa chọn bàn</string>
 
 </resources>

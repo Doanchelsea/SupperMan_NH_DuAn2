@@ -41,6 +41,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void setOnLoadMore(boolean onLoadMore) {
         this.onLoadMore = onLoadMore;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -87,7 +88,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-
         if (onLoadMore){
             if (position == list.size() - 1)
                 return LOAD_MORE;

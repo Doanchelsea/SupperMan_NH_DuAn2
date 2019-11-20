@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.fpoly.supperman_nh_duan2.R;
+import com.fpoly.supperman_nh_duan2.api.eventbus.MainEvent;
 import com.fpoly.supperman_nh_duan2.base.BaseActivity;
 import com.fpoly.supperman_nh_duan2.model.local.AppPreferencesHelper;
 import com.fpoly.supperman_nh_duan2.model.local.DataManager;
@@ -21,6 +22,10 @@ import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 
@@ -52,6 +57,8 @@ public class MainActivity extends BaseActivity implements Connectable, Disconnec
         ID = dataManager.getID();
         NAME = dataManager.getName();
         IMAGE = dataManager.getImage();
+
+
     }
 
     public static void startActivity(Activity context){
@@ -140,6 +147,7 @@ public class MainActivity extends BaseActivity implements Connectable, Disconnec
     private void loadFragment(Fragment activeFragment, Fragment showFragment) {
         getSupportFragmentManager().beginTransaction().hide(activeFragment).show(showFragment).commit();
     }
+
     private void loadAllFragment() {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_container, thongTinFragment, "4").hide(thongTinFragment).commit();

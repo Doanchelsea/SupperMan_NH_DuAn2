@@ -12,13 +12,13 @@
     <ImageView
         android:layout_width="@dimen/space_200"
         android:layout_height="@dimen/space_200"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="@dimen/space_32"
+        android:layout_marginBottom="@dimen/space_8"
         app:layout_constraintBottom_toTopOf="@+id/form_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logoimg" />
+        app:srcCompat="@drawable/logo" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/form_login"

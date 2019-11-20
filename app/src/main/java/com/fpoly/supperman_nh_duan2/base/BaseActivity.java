@@ -12,12 +12,17 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fpoly.supperman_nh_duan2.R;
+import com.fpoly.supperman_nh_duan2.ui.login.LoginActivity;
 import com.fpoly.supperman_nh_duan2.untils.StringUtils;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -31,6 +36,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected Context context;
     protected Merlin merlin;
     private Unbinder unbinder;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,6 +91,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected void registerBindable(Bindable bindable) {
         merlin.registerBindable(bindable);
     }
+
     protected void loadAvatar(String url, ImageView ivAvatar) {
         if (url == null || ivAvatar == null) {
             return;
@@ -117,14 +124,15 @@ public abstract class BaseActivity extends RxAppCompatActivity {
                 }
             }
         }
-
     }
+
     protected void addDisposable(Disposable disposable) {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();
         }
         compositeDisposable.add(disposable);
     }
+
     public void showToastDisconnect() {
         Toasty.warning(this, getString(R.string.error_missing_network), 200).show();
     }
@@ -134,11 +142,13 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent,1);
-    }protected void loadFullName(String fullName, TextView tvFullName) {
+    }
+    protected void loadFullName(String fullName, TextView tvFullName) {
         if (StringUtils.isEmpty(fullName) || tvFullName == null) {
             return;
         }
         tvFullName.setText(fullName);
     }
+
 
 }

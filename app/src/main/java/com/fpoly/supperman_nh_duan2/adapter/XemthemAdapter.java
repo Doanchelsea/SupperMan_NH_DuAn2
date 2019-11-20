@@ -67,7 +67,7 @@ public class XemthemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             viewHordel.tv_namenh.setMaxLines(1);
             viewHordel.tv_namenh.setEllipsize(TextUtils.TruncateAt.END);
-            viewHordel.tv_namenh.setText(menus.getNames());
+            viewHordel.tv_namenh.setText(menus.getNamenh());
 
             viewHordel.tv_name_mon_an.setMaxLines(1);
             viewHordel.tv_name_mon_an.setEllipsize(TextUtils.TruncateAt.END);
@@ -94,7 +94,8 @@ public class XemthemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             viewHordel.itemView.setOnClickListener(view -> {
                 monLisenner.onclick(list.get(position));
             });
-        } else if (holder instanceof HistoryAdapter.LoadHolder){
+
+        } else if (holder instanceof XemthemAdapter.LoadHolder){
 
         }
 

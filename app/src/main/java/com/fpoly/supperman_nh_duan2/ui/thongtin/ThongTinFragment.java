@@ -7,28 +7,39 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.fpoly.supperman_nh_duan2.R;
 import com.fpoly.supperman_nh_duan2.api.Server;
 import com.fpoly.supperman_nh_duan2.base.BaseFragment;
+import com.fpoly.supperman_nh_duan2.model.LoadingDialog;
 import com.fpoly.supperman_nh_duan2.model.local.AppPreferencesHelper;
 import com.fpoly.supperman_nh_duan2.model.local.DataManager;
 import com.fpoly.supperman_nh_duan2.ui.history.HistoryActivity;
 import com.fpoly.supperman_nh_duan2.ui.home.diglog.HotlineDialog;
 import com.fpoly.supperman_nh_duan2.ui.login.LoginActivity;
+import com.fpoly.supperman_nh_duan2.ui.main.MainActivity;
 import com.fpoly.supperman_nh_duan2.ui.thongtin.detail.ThongTinDetailActivity;
 import com.jakewharton.rxbinding3.view.RxView;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 
-public class ThongTinFragment extends BaseFragment {
+public class ThongTinFragment extends BaseFragment implements ThongtinContract {
 
     private SharedPreferences mPrefs;
     private AppPreferencesHelper appPreferencesHelper;
     private DataManager dataManager;
+    private ThongtinPrsenter prsenter;
     @BindView(R.id.fragment_account_iv_avatar_driver)
     CircleImageView ivAvatar;
 
@@ -86,8 +97,8 @@ public class ThongTinFragment extends BaseFragment {
                 .throttleFirst(2, TimeUnit.SECONDS)
                 .compose(bindToLifecycle())
                 .subscribe(unit -> {
-                    dataManager.clearAllUserInfo();
-                    LoginActivity.startActivity(activity);
+                    showLoading(true);
+                    prsenter.updateToken("null",MainActivity.ID);
                 }));
     }
 
@@ -101,6 +112,7 @@ public class ThongTinFragment extends BaseFragment {
         mPrefs = context.getSharedPreferences("", Context.MODE_PRIVATE);
         appPreferencesHelper = new AppPreferencesHelper(mPrefs,activity);
         dataManager = new DataManager(appPreferencesHelper);
+        prsenter = new ThongtinPrsenter(activity,this);
     }
 
     @Override
@@ -113,4 +125,25 @@ public class ThongTinFragment extends BaseFragment {
         return R.layout.thongtin_fragment;
     }
 
+    @Override
+    public void error(int error) {
+        showLoading(false);
+        Toasty.error(activity,error).show();
+    }
+
+    @Override
+    public void success() {
+        dataManager.clearAllUserInfo();
+        LoginActivity.startActivity(activity);
+        showLoading(false);
+    }
+
+    @Override
+    public void showLoading(boolean show) {
+        if (show){
+            LoadingDialog.getInstance().showLoading(activity);
+        }else {
+            LoadingDialog.getInstance().hideLoading();
+        }
+    }
 }

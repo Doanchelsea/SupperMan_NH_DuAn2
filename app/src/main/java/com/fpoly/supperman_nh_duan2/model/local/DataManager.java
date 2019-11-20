@@ -9,6 +9,17 @@ public class DataManager implements PreferencesHelper {
     }
 
     @Override
+    public String token() {
+        return preferencesHelper.token();
+    }
+
+    @Override
+    public void setToken(String token) {
+         preferencesHelper.setToken(token);
+    }
+
+
+    @Override
     public void setLoggedIn(boolean isLoggedIn) {
         preferencesHelper.setLoggedIn(isLoggedIn);
     }

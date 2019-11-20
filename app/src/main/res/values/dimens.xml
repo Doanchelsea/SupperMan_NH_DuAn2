@@ -208,8 +208,17 @@
         350.0dp
     </dimen>
 
-    <dimen name="space_400">
-        400.0dp
+    <dimen name="space_450">
+        450.0dp
+    </dimen>
+    <dimen name="space_500">
+        500.0dp
+    </dimen>
+    <dimen name="space_550">
+        550.0dp
+    </dimen>
+    <dimen name="space_600">
+        600.0dp
     </dimen>
 
 
