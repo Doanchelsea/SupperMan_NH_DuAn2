@@ -164,17 +164,19 @@ public class MenuDetailActivity extends BaseActivity implements Connectable, Dis
     public void onBind(NetworkStatus networkStatus) {
         if (!networkStatus.isAvailable()){
             onDisconnect();
+        }else {
+            hideDialog();
         }
     }
 
     @Override
     public void onConnect() {
-
+        hideDialog();
     }
 
     @Override
     public void onDisconnect() {
-        showToastDisconnect();
+        showDialog();
     }
 
     @Override

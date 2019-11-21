@@ -107,17 +107,19 @@ public class MainActivity extends BaseActivity implements Connectable, Disconnec
     public void onBind(NetworkStatus networkStatus) {
         if (!networkStatus.isAvailable()){
             onDisconnect();
+        }else {
+            hideDialog();
         }
     }
 
     @Override
     public void onConnect() {
-
+        hideDialog();
     }
 
     @Override
     public void onDisconnect() {
-        showToastDisconnect();
+        showDialog();
     }
 
 

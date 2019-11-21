@@ -176,20 +176,22 @@ public class AddDishActivity extends BaseActivity implements Connectable, Discon
 
     @Override
     public void onBind(NetworkStatus networkStatus) {
-        if (!networkStatus.isAvailable()) {
+        if (!networkStatus.isAvailable()){
             onDisconnect();
+        }else {
+            onConnect();
         }
     }
 
     @Override
     public void onConnect() {
-
+        hideDialog();
     }
 
     @Override
     public void onDisconnect() {
         showProgress(false);
-        showToastDisconnect();
+        showDialog();
     }
 
     @Override

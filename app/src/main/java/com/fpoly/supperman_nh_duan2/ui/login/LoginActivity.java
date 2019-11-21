@@ -111,7 +111,6 @@ public class LoginActivity extends BaseActivity implements Connectable, Disconne
 
     @Override
     public void onDisconnect() {
-        showToastDisconnect();
         showLoading(false);
     }
 

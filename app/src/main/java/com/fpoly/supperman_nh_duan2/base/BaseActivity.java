@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fpoly.supperman_nh_duan2.R;
+import com.fpoly.supperman_nh_duan2.dialog.DialogDisconnect;
 import com.fpoly.supperman_nh_duan2.ui.login.LoginActivity;
 import com.fpoly.supperman_nh_duan2.untils.StringUtils;
 import com.novoda.merlin.Bindable;
@@ -36,6 +37,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected Context context;
     protected Merlin merlin;
     private Unbinder unbinder;
+    private DialogDisconnect dialog = DialogDisconnect.newInstance();
 
 
     @Override
@@ -149,6 +151,11 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         }
         tvFullName.setText(fullName);
     }
-
+    protected void showDialog(){
+        dialog.show(getSupportFragmentManager(),dialog.getTag());
+    }
+    protected void hideDialog(){
+        dialog.hideDialog();
+    }
 
 }

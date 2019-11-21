@@ -120,17 +120,19 @@ public class ThanhToanActivity extends BaseActivity implements Connectable, Disc
     public void onBind(NetworkStatus networkStatus) {
         if (!networkStatus.isAvailable()){
             onDisconnect();
+        }else {
+            hideDialog();
         }
     }
 
     @Override
     public void onConnect() {
-
+        hideDialog();
     }
 
     @Override
     public void onDisconnect() {
-        showToastDisconnect();
+        showDialog();
     }
 
     @Override
